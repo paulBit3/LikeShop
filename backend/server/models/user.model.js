@@ -27,6 +27,34 @@ const userSchema = new Schema({
         required: "Password required"
     },
     salt: String,
+    following: [
+        {
+            user:{ 
+                type: Schema.ObjectId, 
+                ref: 'User' 
+            },
+        }
+    
+    ],
+    followers: [
+        {
+            user:{ 
+                type: Schema.ObjectId, 
+                ref: 'User' 
+            },
+        }
+    ],
+    posts: [
+        {
+            user:{ 
+                type: Schema.ObjectId, 
+                ref: 'User' 
+            },
+        }
+    ],
+    block: {
+        type: Boolean
+    },
     updated: {
         type: Date,
         default: Date.now()
@@ -34,7 +62,13 @@ const userSchema = new Schema({
     created: {
         type: Date,
         default: Date.now()
-    }
+    },
+    seller: {
+        type: Boolean,
+        default: false
+    },
+    stripe_seller: {},
+    stripe_customer: {},
 
 })
 
@@ -55,8 +89,8 @@ userSchema
 
 //password field validation
 userSchema.path('hashed_password').validate(function(v) {
-    if (this._password && this._password.length < 8) {
-        this.invalidate('password', 'Password must be at least 8 characters.')
+    if (this._password && this._password.length < 12) {
+        this.invalidate('password', 'Password must be at least 12 characters.')
     }
     if (this.isNew && !this._password) {
         this.invalidate('password', 'The password required')
