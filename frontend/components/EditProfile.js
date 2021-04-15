@@ -9,6 +9,8 @@ import TextField from '@material-ui/core/TextField';
 import Avatar from '@material-ui/core/Avatar';
 import Typography from '@material-ui/core/Typography';
 import Icon from '@material-ui/core/Icon';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import Switch from '@material-ui/core/Switch';
 import Container from '@material-ui/core/Container';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import auth from './../client/helpers/auth-helpers';
@@ -54,6 +56,10 @@ import { Redirect, Link} from 'react-router-dom';
         },
         submit: {
             margin: theme.spacing(3, 0, 2),
+        },
+        subheading: {
+            marginTop: theme.spacing(2),
+            color: theme.palette.openTitle
         }
     }));
 
@@ -97,7 +103,7 @@ export default function EditProfile({ match }) {
             if (data && data.error) {
                 setValues({...values, error: data.error})
             } else {
-                setValues({...values, name: data.name, email: data.email})
+                setValues({...values, name: data.name, email: data.email, seller: data.seller})
             }
         })
         return function cleanup(){
@@ -110,7 +116,8 @@ export default function EditProfile({ match }) {
         const user = {
             name: values.name || undefined,
             email: values.email || undefined,
-            password: values.password || undefined
+            password: values.password || undefined,
+            seller: value.seller || undefined
         } 
         update({
             userId: match.params.userId
@@ -120,12 +127,20 @@ export default function EditProfile({ match }) {
             if (data && data.error) {
                 setValues({...values, error: data.error})
             } else {
-                setValues({...values, userId: data._id, redirectToProfile: true})
+                auth.updateUser(data, ()=>{
+                    setValues({...values, userId: data._id, redirectToProfile: true})
+                })
             }
         })
     }
+
     const handleChange = name => event => {
         setValues({...values, [name]: event.target.value})
+    }
+
+    //activate and inactivate user to be seller
+    const handleAccount = (event, checked) => {
+        setValues({...values, 'seller': checked})
     }
     
     if(values.redirectToProfile) { 
@@ -204,6 +219,25 @@ export default function EditProfile({ match }) {
                         Save
                     </Button>
                </form>
+               <Typography variant="subtitle2" className={classes.subheading}>Your seller account</Typography>
+               <FormControlLabel
+                 control={
+                    <Switch classes={{
+                        checked: classes.checked,
+                        bar: classes.bar,
+                    }}
+                    checked={values.seller, color === 'dark'}
+                    onChange={handleAccount}
+                    />}
+                  label={values.seller? 'Active' : 'Inactive'}
+                />
+                <br/>
+                {
+                    values.error && (<Typography component="p" color="error">
+                        <Icon color="error" className={classes.error}>error</Icon>
+                        {values.error}
+                    </Typography>)
+                }
            </div>
            {/* calling copyright function here */}
            <Box mt={5}><Copyright /></Box>

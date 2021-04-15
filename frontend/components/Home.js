@@ -37,13 +37,13 @@ export default function Home() {
     return (
         <Card className={classes.card}>
             <Typography variant="h3" className={classes.title}>
-                Welcome to your Tech Stack community
+                Welcome to your LikeShop
             </Typography>
             <CardMedia className={classes.media} image={backImg} title="Home Image"/>
             <Typography variant="body1" component="p" className={classes.credit} color="textSecondary"></Typography>
             <CardContent>
                 <Typography variant="body1" component="p">
-                    Discuss and share your Tech stack experience.
+                    Shop and stay social.
                 </Typography>
             </CardContent>
             

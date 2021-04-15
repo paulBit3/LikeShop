@@ -1,7 +1,7 @@
 /* this is for server-side configuration-related 
 variables that will be used in our application */
 
-const secret = '3#=vla6j$52gwrq1r$$bk1e0*s$*24kkq_=8n54+dt5119+i8z'
+const secret = '3#=vla6j$52gwrq1r$$bk1e0*s$*24poi_=8n54+dt5119+i8z'
 
 
 const config = {

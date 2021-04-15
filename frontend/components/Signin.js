@@ -59,6 +59,31 @@ const useStyles = makeStyles((theme) => ({
     button: {
         margin: theme.spacing(3, 0, 2),
     },
+    inputBorder: {
+        border: '1px solid #e9ddd0',
+        '&:focus': {
+          borderColor: theme.palette.secondary.main,
+        },
+    },
+    root: {
+        '& label.Mui-focused': {
+          color: '#28282a',
+        },
+        '& .MuiInput-underline:after': {
+          borderBottomColor: 'green',
+        },
+        '& .MuiOutlinedInput-root': {
+          '& fieldset': {
+            borderColor: 'red',
+          },
+          '&:hover fieldset': {
+            borderColor: '#ff3366',
+          },
+          '&.Mui-focused fieldset': {
+            borderColor: '#28282a',
+          },
+        },
+    },
 }));
 
 
@@ -129,7 +154,7 @@ export default function Signin(props) {
                <Avatar className={classes.avatar}>
                    <LockOutlinedIcon />
                </Avatar>
-               <Typography component="h1" variant="h5">
+               <Typography component="h1" variant="h5" className={classes.title}>
                    Sign in
                </Typography>
                <form className={classes.form} onSubmit={ onSubmit } >
@@ -147,6 +172,7 @@ export default function Signin(props) {
                             value={values.email}
                             onChange={handleChange('email')}
                             InputLabelProps={{ shrink: true }}
+                            className={classes.root}
                             autoFocus />
                         </Grid>
                         <Grid item xs={12}>
@@ -162,6 +188,7 @@ export default function Signin(props) {
                             value={values.password}
                             onChange={handleChange('password')}
                             InputLabelProps={{ shrink: true }}
+                            className={classes.root}
                             />
                         </Grid>
 
@@ -175,7 +202,7 @@ export default function Signin(props) {
                         <Button 
                             fullWidth 
                             variant="contained" 
-                            color="primary" 
+                            color="secondary" 
                             className={classes.button} 
                             type="submit" >
                             Sign In

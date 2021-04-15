@@ -58,7 +58,25 @@ const useStyles = makeStyles((theme) => ({
     submit: {
         margin: theme.spacing(3, 0, 2),
     },
-    //checked: {},
+    root: {
+        '& label.Mui-focused': {
+          color: '#28282a',
+        },
+        '& .MuiInput-underline:after': {
+          borderBottomColor: 'green',
+        },
+        '& .MuiOutlinedInput-root': {
+          '& fieldset': {
+            borderColor: 'red',
+        },
+          '&:hover fieldset': {
+            borderColor: '#ff3366',
+          },
+          '&.Mui-focused fieldset': {
+            borderColor: '#28282a',
+          },
+        },
+      },
 }));
 
 /* const GreenCheckbox = withStyles({
@@ -78,7 +96,7 @@ function Copyright(){
     return (
         <Typography variant="body2" color="textSecondary" align="center">
             {'Copyright ©'}
-            <Link color="inherit" href="/">Oficy Inc.
+            <Link color="inherit" to="/">Oficy Inc.
             </Link>{''}
             {new Date().getFullYear()}
             {'.'}
@@ -162,7 +180,8 @@ export default function Signup() {
                             name="fullName"
                             autoComplete="fname"
                             InputLabelProps={{ shrink: true }}
-                            placeholder="Full Name"
+                            // placeholder="Full Name"
+                            className={classes.root}
                             autoFocus
                             />
                         </Grid>
@@ -177,8 +196,9 @@ export default function Signup() {
                             onChange={handleInputChange('email')}
                             name="email"
                             autoComplete="email"
-                            placeholder="Email"
+                            // placeholder="Email"
                             InputLabelProps={{ shrink: true }} 
+                            className={classes.root}
                             />
                         </Grid>
                         <Grid item xs={12}>
@@ -193,8 +213,9 @@ export default function Signup() {
                             onChange={handleInputChange('password')}
                             name="password"
                             autoComplete="current-password"
-                            placeholder="Password"
-                            InputLabelProps={{ shrink: true }} 
+                            // placeholder="Password"
+                            InputLabelProps={{ shrink: true }}
+                            className={classes.root} 
                             />
                         </Grid>
                         <Grid item xs={12}>
@@ -222,7 +243,7 @@ export default function Signup() {
                         type="submit" 
                         fullWidth
                         variant="contained" 
-                        color="primary" 
+                        color="secondary" 
                         className={classes.submit}
                         >
                         Sign Up
@@ -231,7 +252,7 @@ export default function Signup() {
                     <Grid container justify="flex-end">
                         <Grid item>
                             Already have an account?
-                            <Link href="/signin" variant="body2">
+                            <Link to="/signin" variant="body2">
                               Login
                             </Link>
                         </Grid>

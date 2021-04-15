@@ -3,7 +3,7 @@ export it , so that it will be used in  App component */
 
 
 import { createMuiTheme } from '@material-ui/core/styles'
-import { pink } from '@material-ui/core/colors'
+import { pink, green, grey, red } from '@material-ui/core/colors'
 
 
 // creating our theme function component
@@ -20,13 +20,27 @@ const theme = createMuiTheme({
     },
     secondary: {
       light: '#93cefc',
-      main: '#ff4e53',
+      main: '#ff3366',
       dark: '#c60055',
       contrastText: '#000',
     },
-      openTitle: '#4775fa',
+      openTitle: '#28282a',
       protectedTitle: pink['400'],
-      type: 'light'
+      type: 'light',
+    warning: {
+      main: '#ffc071',
+      dark: '#ffb25e',
+    },
+    error: {
+      xLight: red[50],
+      main: red[500],
+      dark: red[700],
+    },
+    success: {
+      xLight: green[50],
+      main: green[500],
+      dark: green[700],
+    },
     }
 })
 
