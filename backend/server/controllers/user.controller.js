@@ -117,6 +117,18 @@ const remove = async (req, res) => {
 
 
 
+// ----------- Checking if the current user is a seller before creating a new shop
+const isSeller = (req, res, next) => {
+    const isSeller = req.profile && req.profile.seller
+    if (!isSeller) {
+        return res.status('403').json({
+            error: "You must be a seller, before creating a shop!"
+        })
+    }
+    next()
+}
+
+
 export default { 
     create, 
     userByID, 
