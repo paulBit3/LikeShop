@@ -99,7 +99,6 @@ export default function Shops(){
                             <ListItem button>
                                 <ListItemAvatar>
                                     <Avatar className={classes.avatar} src={'/api/shops/logo/'+ shop._id +"?" + new Date().getTime()}/>
-                                        <Person/>
                                 </ListItemAvatar>
                                 <div className={classes.details}>
                                     <Typography type="headline" component="h2" color="primary" className={classes.shopTitle}>
@@ -113,6 +112,8 @@ export default function Shops(){
                          <Divider/>
                         </Link>})}
             </List>
+            {/* calling copyright function here */}
+            <Box mt={5}><Copyright /></Box>
         </Container>
     )
 
