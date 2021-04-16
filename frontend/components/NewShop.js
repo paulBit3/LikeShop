@@ -7,6 +7,7 @@ import { PhotoCamera } from "@material-ui/icons";
 import AddPhotoAlternateIcon from '@material-ui/icons/AddPhotoAlternate';
 import Button from "@material-ui/core/Button";
 import Grid from "@material-ui/core/Grid";
+import Box from '@material-ui/core/Box';
 import IconButton from "@material-ui/core/IconButton"
 import TextField from '@material-ui/core/TextField'
 import Typography from "@material-ui/core/Typography"
@@ -182,6 +183,7 @@ export default function NewShop() {
                 </Button>
                 <Link to='/seller/shops' className={classes.submit}><Button variant="contained">Cancel</Button></Link>
             </CardActions>
+            <Box mt={5}><Copyright /></Box>
         </CardContent>
     )
 
