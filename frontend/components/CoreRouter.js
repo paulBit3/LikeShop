@@ -52,6 +52,8 @@ const CoreRouter = () => {
 
                 {/* to add a new shop view displaying all shops */}
                 <PrivateRoute path="seller/shop/new" component={NewShop} />
+                {/* to displaying the owner shops */}
+                <PrivateRoute path="seller/shops" component={MyShops} />
             </Switch>
         </div>
     )

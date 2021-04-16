@@ -234,9 +234,10 @@ const Header = withRouter(({history}) => {
                                     </Link>
                                 </MenuItem>
                                 <MenuItem onClick={handleClose} className={classes.menu}>
-                                    <Link to="/seller/shops">
-                                        <Button color="inherit" style={isPartActive(history, "/seller")}>My Shops</Button>
-                                    </Link>
+                                    {auth.isAuthenticated().user.seller && (<Link to="/seller/shops">
+                                        <Button color="inherit" style={isPartActive(history, "/seller/")}>My Shops</Button>
+                                    </Link>)
+                                    }
                                 </MenuItem>
                                 <MenuItem onClick={handleClose} className={classes.menu}>
                                     <Button color="inherit" onClick={() => {

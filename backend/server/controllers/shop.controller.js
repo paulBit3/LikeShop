@@ -73,7 +73,31 @@ const listByOwner = async (req, res) => {
     }
 }
 
+// ----------- Retrieve the shop from the database
+/* this method will will return all shops by ID*/
+const shopByID = async (req, res, next, id) => {
+    try {
+        let shop = await Shop.findById(id).populate('owner', '_id name').exec()
+        if (!shop)
+          return res.status('400').json({
+              error: "No Shop found in the database "
+          })
+          req.shop = shop
+          next()
+    } catch (err) {
+        return res.status('400').json({
+            error: "The System could not retrive shop"
+        })
+    }
+}
+
+
+
+
+
 export default {
     create,
     list,
+    listByOwner,
+    shopByID,
 }

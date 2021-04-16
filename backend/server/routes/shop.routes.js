@@ -12,6 +12,10 @@ router.route('/api/shops')
   .get(shopCtrl.list)
 
 
+//the api endpoint to read shops on in the database
+router.route('/api/shop/:shopId')
+  .get(shopCtrl.read)
+
 //the api endpoint to create a new shops and get shop by ownwer in the database
 router.route('/api/shops/by/:userId')
   .post(authCtrl.requireSignin, authCtrl.hasAuthorization, userCtrl.isSeller, shopCtrl.create)
@@ -20,6 +24,9 @@ router.route('/api/shops/by/:userId')
 
 //path containing the :userId parameter to retrieve the assocaite user
 router.param('userId', userCtrl.userByID)
+
+//path containing the :shopId parameter to retrieve the specific shop
+router.param('shopId', shopCtrl.shopByID)
 
 
 export default router
