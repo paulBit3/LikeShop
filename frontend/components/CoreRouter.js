@@ -12,6 +12,7 @@ import EditProfile from './EditProfile';
 import NewShop from './NewShop';
 import Shops from './Shops';
 import MyShops from './MyShops';
+import Shop from './Shop';
 import PrivateRoute from './PrivateRoute';
 import Header from './Header';
 
@@ -49,6 +50,9 @@ const CoreRouter = () => {
                 
                 {/* to redirect the user to a view displaying all shops */}
                 <Route path="/shops/all" component={Shops} />
+
+                {/* to redirect the user to a specific shop with shop details */}
+                <Route path="/shops/:shopId" component={Shop} />
 
                 {/* to add a new shop view displaying all shops */}
                 <PrivateRoute path="seller/shop/new" component={NewShop} />

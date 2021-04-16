@@ -74,7 +74,7 @@ const listByOwner = async (req, res) => {
 }
 
 // ----------- Retrieve the shop from the database
-/* this method will will return all shops by ID*/
+/* this method will return all shops by ID*/
 const shopByID = async (req, res, next, id) => {
     try {
         let shop = await Shop.findById(id).populate('owner', '_id name').exec()
@@ -92,6 +92,68 @@ const shopByID = async (req, res, next, id) => {
 }
 
 
+//define a default shop photo
+const defaultPhoto = (req, res) => {
+    return res.sendFile(process.cwd() +defaultImage)
+}
+
+
+// ----------- Read the shop from the database
+/* this method controller return a shop object in respnse to the client*/
+const read = (req, res) => {
+    req.shop.photo = undefined
+    //we removed photo field before sending response to 
+    //client because photo is retrieved in a separate route
+    return res.json(req.shop)
+}
+
+
+// ----------- Update the shop from the database
+/* this method use formidable and fs module to parse form data and update existing shop */
+const update = (req, res) => {
+    let form = new formidable.IncomingForm()
+    form.keepExtensions = true
+    form.parse(req, async (err, fields, files) => {
+        if (err) {
+            res.status(400).json({
+                message: "Photo could not be uploaded"
+            })
+        }
+        let shop = req.shop
+        shop = extend(shop, fields)
+        shop.updated =  Date.now()
+        if (files.photo) {
+            shop.photo.data = fs.readFileSync(files.photo.path)
+            shop.photo.contentType = files.photo.type
+        }
+        try {
+            let res = await shop.save()
+            res.json(res)
+        } catch (err) {
+            return res.status(400).json({
+                error: errorHandler.getErrorMessage(err)
+            })
+        }
+    })
+}
+
+
+
+// ----------- Edit the shop in the database
+/* this method controller check if the signed user is the owner of the shop*/
+const isOwner = (req, res, next) => {
+    const isOwner = req.shop && req.auth && req.shop.owner._id == req.auth._id
+    if (!isOwner) {
+        return res.status('403').json({
+            error: "You are not authorized"
+        })
+    }
+    next()
+}
+
+
+
+
 
 
 
@@ -100,4 +162,8 @@ export default {
     list,
     listByOwner,
     shopByID,
+    defaultPhoto,
+    read,
+    update,
+    isOwner,
 }

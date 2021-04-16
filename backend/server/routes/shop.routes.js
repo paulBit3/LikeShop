@@ -22,6 +22,13 @@ router.route('/api/shops/by/:userId')
   .get(authCtrl.requireSignin, authCtrl.hasAuthorization, shopCtrl.listByOwner)
 
 
+//the api endpoint to update existing shops in the database, if the user is a authorized seller
+router.route('/api/shops/:shopId')
+  .put(authCtrl.requireSignin, shopCtrl.isOwner, shopCtrl.update)
+ 
+
+
+
 //path containing the :userId parameter to retrieve the assocaite user
 router.param('userId', userCtrl.userByID)
 
