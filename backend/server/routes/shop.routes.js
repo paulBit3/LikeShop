@@ -12,10 +12,10 @@ router.route('/api/shops')
   .get(shopCtrl.list)
 
 
-//the api endpoint to create a new shops in the database
+//the api endpoint to create a new shops and get shop by ownwer in the database
 router.route('/api/shops/by/:userId')
   .post(authCtrl.requireSignin, authCtrl.hasAuthorization, userCtrl.isSeller, shopCtrl.create)
-  .get()
+  .get(authCtrl.requireSignin, authCtrl.hasAuthorization, shopCtrl.listByOwner)
 
 
 //path containing the :userId parameter to retrieve the assocaite user

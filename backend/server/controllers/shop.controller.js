@@ -57,6 +57,22 @@ const list = async (req, res) => {
     }
 }
 
+
+// ----------- Listing all shops of specific owner
+/* the list controller method will 1st ensure user is signed, and 
+   is also the authorized owner, and will return all shops of specific owner*/
+
+const listByOwner = async (req, res) => {
+    try {
+        let shops = await Shop.find({owner: req.profile._id}).populate('owner', '_id name')
+        res.json(shops)
+    } catch (err) {
+        return res.status(400).json({
+            error: errorHandler.getErrorMessage(err)
+        })
+    }
+}
+
 export default {
     create,
     list,

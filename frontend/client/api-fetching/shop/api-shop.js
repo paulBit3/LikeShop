@@ -23,7 +23,7 @@ const create = async (params, credentials, shop) => {
     }
 }
 
-/*---the lsit method uses fetch to make a GET request to the shop list API*/
+/*---the list method uses fetch to make a GET request to the shop list API*/
 const list = async (signal) => {
     try {
         let res = await fetch('/api/shops', {
@@ -32,6 +32,25 @@ const list = async (signal) => {
         })
         return res.json()
     } catch(err) {
+        console.log(err)
+    }
+}
+
+
+/*---this method uses fetch to make a GET request and return all shops 
+   owned by a user , using the list by owner API*/
+const listByOwner = async (params, credentials, signal) => {
+    try {
+        let res = await fetch('/api/shops/by/'+params.userId, {
+            method: 'GET',
+            signal: 'signal',
+            headers: {
+                'Accept': 'application/json',
+                'Authorization': 'Bearer ' + credentials.t
+            }
+        })
+        return res.json()
+    } catch (err) {
         console.log(err)
     }
 }

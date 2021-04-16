@@ -9,6 +9,9 @@ import Signup from './Signup';
 import Signin from './Signin';
 import Profile from './Profile';
 import EditProfile from './EditProfile';
+import NewShop from './NewShop';
+import Shops from './Shops';
+import MyShops from './MyShops';
 import PrivateRoute from './PrivateRoute';
 import Header from './Header';
 
@@ -44,6 +47,11 @@ const CoreRouter = () => {
                 {/* to add the Profile component to the App */}
                 <Route path="/user/:userId" component={Profile} />
                 
+                {/* to redirect the user to a view displaying all shops */}
+                <Route path="/shops/all" component={Shops} />
+
+                {/* to add a new shop view displaying all shops */}
+                <PrivateRoute path="seller/shop/new" component={NewShop} />
             </Switch>
         </div>
     )
