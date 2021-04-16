@@ -6,7 +6,7 @@
 /*---the create method makes a post request and 
     pass it the multipart form data containing 
     details of the new shop, then fetch to make 
-    POST call at the create API route '/api/users' */
+    POST call at the create API route '/api/shops' */
 const create = async (params, credentials, shop) => {
     try {
         let res = await fetch('/api/shops/by/'+ params.userId, {
@@ -22,3 +22,6 @@ const create = async (params, credentials, shop) => {
         console.log(err)
     }
 }
+
+/*---the lsit method uses fetch to make a GET request to the shop list API*/
+const list = async (signal) => {}

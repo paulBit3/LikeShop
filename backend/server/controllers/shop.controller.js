@@ -42,6 +42,22 @@ const create = (req, res) => {
     })
 }
 
+
+// ----------- Listing all shops
+//the list controller method will return all shops from our database
+const list = async (req, res) => {
+    try {
+        let shops = await Shop.find()
+        //return users as JSON objects
+        res.json(shops)
+    } catch (err) {
+        return res.status(400).json({
+            error: errorHandler.getErrorMessage(err)
+        })
+    }
+}
+
 export default {
     create,
+    list,
 }
