@@ -24,4 +24,14 @@ const create = async (params, credentials, shop) => {
 }
 
 /*---the lsit method uses fetch to make a GET request to the shop list API*/
-const list = async (signal) => {}
+const list = async (signal) => {
+    try {
+        let res = await fetch('/api/shops', {
+            method: 'GET',
+            signal: signal
+        })
+        return res.json()
+    } catch(err) {
+        console.log(err)
+    }
+}
