@@ -69,7 +69,7 @@ function Copyright(){
     return (
         <Typography variant="body2" color="textSecondary" align="center">
             {'Copyright ©'}
-            <Link color="inherit" href="/">Oficy Inc.
+            <Link color="inherit" to="/">Oficy Inc.
             </Link>{''}
             {new Date().getFullYear()}
             {'.'}
@@ -148,29 +148,35 @@ export default function NewShop() {
                         <PhotoCamera fontSize="large" />
                     </Fab>
                 </label> <span className={classes.filename}>{state.photo ? state.photo.name : ''}</span><br/>
-                <TextField 
-                    id="name" 
-                    label="Shop name" 
-                    className={classes.textField} 
-                    value={state.name}
-                    onChange={handleUploadClick('name')}
-                    margin="normal"
-                /><br/>
-                <TextField
-                    id="multiline-flexible"
-                    label="Description"
-                    multiline
-                    rows="2"
-                    value={state.description}
-                    onChange={handleUploadClick('description')}
-                    className={classes.textField}
-                    margin="normal"
-                /> <br/> 
-                {
-                    state.error && (<Typography component="p" color="error">
-                    <Icon color="error" className={classes.error}>error</Icon>
-                    {state.error}</Typography>)
-                }
+                <Grid container spacing={2}>
+                    <Grid item xs={12}>
+                        <TextField 
+                            id="name" 
+                            label="Shop name" 
+                            className={classes.textField} 
+                            value={state.name}
+                            onChange={handleUploadClick('name')}
+                            margin="normal"
+                        />
+                    </Grid><br/>
+                    <Grid item xs={12}>
+                        <TextField
+                            id="multiline-flexible"
+                            label="Description"
+                            multiline
+                            rows="2"
+                            value={state.description}
+                            onChange={handleUploadClick('description')}
+                            className={classes.textField}
+                            margin="normal"
+                        />
+                    </Grid> <br/> 
+                    {
+                        state.error && (<Typography component="p" color="error">
+                        <Icon color="error" className={classes.error}>error</Icon>
+                        {state.error}</Typography>)
+                    }
+                </Grid>
             </Grid>
             <CardActions>
                 <Button 
