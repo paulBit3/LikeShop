@@ -28,7 +28,7 @@ const list = async (signal) => {
     try {
         let res = await fetch('/api/shops', {
             method: 'GET',
-            signal: signal
+            signal: signal,
         })
         return res.json()
     } catch(err) {
@@ -50,7 +50,46 @@ const listByOwner = async (params, credentials, signal) => {
             }
         })
         return res.json()
-    } catch (err) {
+    } catch(err) {
         console.log(err)
     }
+}
+
+const read = async (params, signal) => {
+    try {
+        let res = await fetch('/api/shop/' + params.shopId, {
+            method: 'GET',
+            signal: signal,
+        })
+        return res.json()
+    } catch(err) {
+        console.log(Error)
+    }
+}
+
+
+const update = async (params, credentials, shop) => {
+    try {
+        let res = await fetch('/api/shops/' + params.shopId, {
+            method: 'PUT',
+            headers: {
+                'Accept': 'application/json',
+                'Authorization': 'Bearer ' + credentials.t
+            },
+            body: shop
+
+        })
+        return res.json()
+    } catch(err) {
+        console.log(err)
+    }
+}
+
+
+export {
+    create,
+    list,
+    listByOwner,
+    read,
+    update,
 }

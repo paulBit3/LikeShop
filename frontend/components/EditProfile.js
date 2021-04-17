@@ -2,10 +2,12 @@
 import React, { useState, useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
+import CardContent from "@material-ui/core/CardContent";
 import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
+import Divider from '@material-ui/core/Divider';
 import Avatar from '@material-ui/core/Avatar';
 import Typography from '@material-ui/core/Typography';
 import Icon from '@material-ui/core/Icon';
@@ -219,17 +221,21 @@ export default function EditProfile({ match }) {
                         Save
                     </Button>
                </form>
-               <Typography variant="subtitle2" className={classes.subheading}>Your seller account</Typography>
-               <FormControlLabel
-                 control={
-                    <Switch classes={{
-                        checked: classes.checked,
-                        bar: classes.bar,
-                    }}
-                    checked={values.seller, color === 'dark'}
-                    onChange={handleAccount}
-                    />}
-                  label={values.seller? 'Active' : 'Inactive'}
+            </div>
+            <br/>
+            <Divider/>
+            <CardContent>
+                <Typography variant="subtitle2" className={classes.subheading}>Your seller account</Typography>
+                <FormControlLabel
+                    control={
+                        <Switch classes={{
+                            checked: classes.checked,
+                            bar: classes.bar,
+                        }}
+                        checked={values.seller, color === 'dark'}
+                        onChange={handleAccount}
+                        />}
+                    label={values.seller? 'Active' : 'Inactive'}
                 />
                 <br/>
                 {
@@ -238,7 +244,8 @@ export default function EditProfile({ match }) {
                         {values.error}
                     </Typography>)
                 }
-           </div>
+            </CardContent>
+           
            {/* calling copyright function here */}
            <Box mt={5}><Copyright /></Box>
        </Container>

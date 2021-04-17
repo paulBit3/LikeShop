@@ -6,8 +6,8 @@ import Shop from '../models/user.model';
 import extend from 'lodash/extend';
 import errorHandler from './../helper/dbErrorHandler';
 import formidable from 'formidable';
-import fs from 'js';
-import defaultImage from './../client/assets/images/showcase4.jpg';
+import fs from 'fs';
+import defaultImage from '../../../frontend/client/assets/images/showcase4.jpg';
 
 
 
@@ -127,8 +127,8 @@ const update = (req, res) => {
             shop.photo.contentType = files.photo.type
         }
         try {
-            let res = await shop.save()
-            res.json(res)
+            let result = await shop.save()
+            res.json(result)
         } catch (err) {
             return res.status(400).json({
                 error: errorHandler.getErrorMessage(err)

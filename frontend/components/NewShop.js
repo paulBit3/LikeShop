@@ -1,19 +1,18 @@
-import React, { useState } from "react"
-import { makeStyles } from "@material-ui/core/styles"
-import Card from "@material-ui/core/Card";
+import React, { useState } from "react";
+import { makeStyles } from "@material-ui/core/styles";
 import CardContent from "@material-ui/core/CardContent";
 import CardActions from "@material-ui/core/CardActions";
 import { PhotoCamera } from "@material-ui/icons";
-import AddPhotoAlternateIcon from '@material-ui/icons/AddPhotoAlternate';
 import Button from "@material-ui/core/Button";
+import AddCircleIcon from '@material-ui/icons/AddCircle';
+import CancelSharpIcon from '@material-ui/icons/CancelSharp';
 import Grid from "@material-ui/core/Grid";
 import Box from '@material-ui/core/Box';
-import IconButton from "@material-ui/core/IconButton"
-import TextField from '@material-ui/core/TextField'
-import Typography from "@material-ui/core/Typography"
+import TextField from '@material-ui/core/TextField';
+import Typography from "@material-ui/core/Typography";
 import auth from './../client/helpers/auth-helpers';
-import {create} from "./../client/api-fetching/shop/api-shop"
-import {Link, Redirect} from "react-router-dom"
+import {create} from "./../client/api-fetching/shop/api-shop";
+import {Link, Redirect} from "react-router-dom";
 
 
 /* Style declaration to define css styles(CSS-in-JS) for the component.
@@ -179,9 +178,19 @@ export default function NewShop() {
                     variant="contained" 
                     onClick={onSubmit} 
                     className={classes.submit}
-                >Submit
+                >
+                    <AddCircleIcon />
                 </Button>
-                <Link to='/seller/shops' className={classes.submit}><Button variant="contained">Cancel</Button></Link>
+                <Link 
+                   to='/seller/shops' 
+                   className={classes.submit}
+                >
+                    <Button 
+                        variant="contained"
+                    >
+                        <CancelSharpIcon />Cancel
+                    </Button>
+                </Link>
             </CardActions>
             <Box mt={5}><Copyright /></Box>
         </CardContent>

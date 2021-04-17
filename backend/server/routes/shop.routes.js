@@ -16,6 +16,7 @@ router.route('/api/shops')
 router.route('/api/shop/:shopId')
   .get(shopCtrl.read)
 
+
 //the api endpoint to create a new shops and get shop by ownwer in the database
 router.route('/api/shops/by/:userId')
   .post(authCtrl.requireSignin, authCtrl.hasAuthorization, userCtrl.isSeller, shopCtrl.create)

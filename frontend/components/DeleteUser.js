@@ -1,6 +1,5 @@
 /* this component will handled method to delete a user via profile component */
 import React, { useState } from 'react';
-
 import PropTypes from 'prop-types';
 import Button from '@material-ui/core/Button';
 import DeleteIcon from '@material-ui/icons/Delete';
