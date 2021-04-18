@@ -7,13 +7,12 @@ import ListItemAvatar from '@material-ui/core/ListItemAvatar';
 import AddCircleIcon from '@material-ui/icons/AddCircle';
 import Fab from '@material-ui/core/Fab';
 import AddIcon from '@material-ui/icons/Add';
-import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
-import ListItemText from '@material-ui/core/ListItemText';
 import Avatar from '@material-ui/core/Avatar';
 import Edit from '@material-ui/icons/Edit';
 import Divider from '@material-ui/core/Divider';
 import {read} from "./../client/api-fetching/shop/api-shop";
-
+import Products from './Products';
+import {listByShop} from './..client/api-fetching/product/api-product';
 import { Box, Typography, IconButton, Card, CardContent, Grid } from '@material-ui/core';
 
 
@@ -71,6 +70,7 @@ function Copyright(){
 export default function Shops(){
     const classes = useStyles()
     const [shop, setShop] = useState('')
+    const [products, setProducts] = useState([])
     const [error, setError] = useState('')
   
     
@@ -78,6 +78,17 @@ export default function Shops(){
         const abortController = new AbortController()
         const signal = abortController.signal
        
+        //calling the list by shop API to retrieve relevant products
+        listByShop({
+            shopId: match.params.shopId
+        }, signal).then((data) => {
+            if (data.error) {
+                setError(data.error)
+            } else {
+                setProducts(data)
+            }
+        })
+
         //calling the read API to retrieve the shop details
         read({
             shopId: match.params.shopId
@@ -95,6 +106,30 @@ export default function Shops(){
     
     }, [match.params.shopId])
 
+
+
+
+    useEffect(() => {
+        const abortController = new AbortController()
+        const signal = abortController.signal
+       
+        //calling the list by shop API to retrieve relevant products
+        listByShop({
+            shopId: match.params.shopId
+        }, signal).then((data) => {
+            if (data.error) {
+                setError(data.error)
+            } else {
+                setProducts(data)
+            }
+        })
+        
+
+        return function cleanup(){
+            abortController.abort()
+        }
+    
+    }, [match.params.shopId])
 
     // retrieving the logo url
     const logUrl = shop._id
@@ -122,6 +157,12 @@ export default function Shops(){
                         </Card>
                     </Grid>
                     {/* implementing product here */}
+                    <Grid item xs={8} sm={8}>
+                        <Card>
+                            <Typography type="title" component="h2" className={classes.productTitle}>Products</Typography>
+                            <Products products={products} searched={false}/>
+                        </Card>
+                    </Grid>
                 </Grid>
 
             </div>
