@@ -140,7 +140,7 @@ const update = (req, res) => {
 
 
 // ----------- Edit the shop in the database
-/* this method controller check if the signed user is the owner of the shop*/
+/* this method controller check if the signed user is the owner of the shop, before Edit it*/
 const isOwner = (req, res, next) => {
     const isOwner = req.shop && req.auth && req.shop.owner._id == req.auth._id
     if (!isOwner) {
@@ -152,6 +152,19 @@ const isOwner = (req, res, next) => {
 }
 
 
+// ----------- Removing a shop in the database
+/* this method controller check if the signed user is the owner of the shop, then remove it*/
+const remove = async (req, res) => {
+    try {
+        let shop = req.shop
+        let removedShop = shop.remove()
+        res.json(removedShop)
+    } catch(err) {
+        return res.status(400).json({
+            error: errorHandler.getErrorMessage(err)
+        })
+    }
+}
 
 
 
