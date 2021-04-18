@@ -15,10 +15,10 @@ import Typography from '@material-ui/core/Typography';
 import Edit from '@material-ui/icons/Edit';
 import Box from '@material-ui/core/Box';
 import Divider from '@material-ui/core/Divider';
-import DeleteUser from './DeleteUser';
 import auth from './../client/helpers/auth-helpers';
 import {listByOwner} from "./../client/api-fetching/shop/api-shop";
 import {Redirect, Link} from 'react-router-dom';
+import DeleteShop from './DeleteShop'
 
 
 
@@ -72,7 +72,7 @@ function Copyright(){
 }
 
 
-export default function Shops(){
+export default function MyShops(){
     const classes = useStyles()
     const [shops, setShops] = useState([])
     const [redirectToSignin, setRedirectToSignin] = useState(false)
@@ -153,6 +153,7 @@ export default function Shops(){
                                                     <Edit />
                                                 </IconButton>
                                             </Link>
+                                            <Delete shop={shop} onRemove={removeShop} />
                                         </ListItemSecondaryAction>)
                                     }
  

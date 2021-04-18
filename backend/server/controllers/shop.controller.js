@@ -22,7 +22,7 @@ const create = (req, res) => {
     form.parse(req, async(err, fields, files) => {
         if (err) {
             res.status(400).json({
-                message: "Could not upload your image"
+                message: "Could not upload shop image"
             })
         }
         let shop = new Shop(fields)
@@ -179,4 +179,5 @@ export default {
     read,
     update,
     isOwner,
+    remove,
 }

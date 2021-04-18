@@ -86,10 +86,28 @@ const update = async (params, credentials, shop) => {
 }
 
 
+/*the delete API*/
+const remove = async (params, credentials) => {
+    try {
+      let res = await fetch('/api/shops/' + params.shopId, {
+        method: 'DELETE',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer ' + credentials.t
+        }
+      })
+      return res.json()
+    } catch(err) {
+      console.log(err)
+    }
+  }
+
 export {
     create,
     list,
     listByOwner,
     read,
     update,
+    remove,
 }

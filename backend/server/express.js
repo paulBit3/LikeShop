@@ -17,6 +17,7 @@ import Template from '../../template';
 import userRoutes from './routes/user.routes';
 import authRoutes from './routes/auth.routes';
 import shopRoutes from './routes/shop.routes';
+import productRoutes from './routes/product.routes';
 // import { UnauthorizedError } from 'express-jwt/lib';
 
 
@@ -110,7 +111,7 @@ app.use('/dist', express.static(path.join(CURRENT_WORKING_DIR, 'dist')));
 app.use('/', userRoutes)
 app.use('/', authRoutes)
 app.use('/', shopRoutes)
-
+app.use('/', productRoutes)
 
 /* sending the template in the reponse to a GET requests for the'/' route */
 app.get("*", (handleRender))
