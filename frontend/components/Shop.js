@@ -12,8 +12,8 @@ import ListItemText from '@material-ui/core/ListItemText';
 import Avatar from '@material-ui/core/Avatar';
 import Edit from '@material-ui/icons/Edit';
 import Divider from '@material-ui/core/Divider';
-import auth from './../client/helpers/auth-helpers';
 import {read} from "./../client/api-fetching/shop/api-shop";
+
 import { Box, Typography, IconButton, Card, CardContent, Grid } from '@material-ui/core';
 
 

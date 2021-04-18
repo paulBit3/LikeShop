@@ -14,6 +14,7 @@ import Shops from './Shops';
 import MyShops from './MyShops';
 import Shop from './Shop';
 import EditShop from './EditShop';
+import NewProduct from './NewProduct';
 import PrivateRoute from './PrivateRoute';
 import Header from './Header';
 
@@ -56,13 +57,16 @@ const CoreRouter = () => {
                 <Route path="/shops/:shopId" component={Shop} />
 
                 {/* to add a new shop view displaying all shops */}
-                <PrivateRoute path="seller/shop/new" component={NewShop} />
+                <PrivateRoute path="/seller/shop/new" component={NewShop} />
 
                 {/* to displaying the owner shops */}
-                <PrivateRoute path="seller/shops" component={MyShops} />
+                <PrivateRoute path="/seller/shops" component={MyShops} />
 
                 {/* to Editing the owner shops */}
-                <PrivateRoute path="seller/shop/edit/:shopId" component={EditShop} />
+                <PrivateRoute path="/seller/shop/edit/:shopId" component={EditShop} />
+                
+                {/* to add a new product to owner shops */}
+                <PrivateRoute path="/seller/:shopId/products/new" component={NewProduct} />
             </Switch>
         </div>
     )
