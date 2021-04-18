@@ -8,7 +8,7 @@ import shopCtrl from '../controllers/shop.controller'
 const router = express.Router()
 
 
-//the api endpoint to create product on in the database
+//the api endpoint to create product and retrieve product from the database
 router.route('/api/products/by/:shopId')
   .post(authCtrl.requireSignin, shopCtrl.isOwner, productCtrl.create)
   .get(productCtrl.listByShop)

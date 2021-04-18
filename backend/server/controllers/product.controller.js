@@ -1,7 +1,7 @@
 /* definition of the controller methods to be executed 
 when a route request is received by the server */
 
-import Product from '../models/user.model';
+import Product from '../models/product.model';
 //lodash library when updating an exixting user with change value
 import extend from 'lodash/extend';
 import errorHandler from './../helper/dbErrorHandler';
@@ -42,6 +42,23 @@ const create = (req, res, next) => {
     })
 }
 
+
+// ----------- Listing all product of specific shop
+/* this method will query Product collection, and return the product matching the given shop */
+
+const listByShop = async (req, res) => {
+    try {
+        let products = await Product.find({shop: req.shop._id}).populate('shop', '_id name').select('-photo')
+        res.json(products)
+    } catch (err) {
+        return res.status(400).json({
+            error: errorHandler.getErrorMessage(err)
+        })
+    }
+}
+
+
 export default {
     create,
+    listByShop,
 }

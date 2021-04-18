@@ -1,7 +1,7 @@
 /* definition of the controller methods to be executed 
 when a route request is received by the server */
 
-import Shop from '../models/user.model';
+import Shop from '../models/shop.model';
 //lodash library when updating an exixting user with change value
 import extend from 'lodash/extend';
 import errorHandler from './../helper/dbErrorHandler';
