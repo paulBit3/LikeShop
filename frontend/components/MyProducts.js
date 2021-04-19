@@ -119,6 +119,7 @@ export default function MyProducts(props) {
                                             <EditSharpIcon />
                                         </IconButton>
                                     </Link>
+                                    {/* implementing delete product here */}
                                 </ListItemSecondaryAction>
                             </Grid>
                             
@@ -130,3 +131,6 @@ export default function MyProducts(props) {
         </div>
     )
 };
+MyProducts.propTypes = {
+    shopId: PropTypes.string.isRequired
+}

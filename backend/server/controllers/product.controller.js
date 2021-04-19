@@ -57,8 +57,22 @@ const listByShop = async (req, res) => {
     }
 }
 
+// ----------- Find all products of specific shop
+/* this method sort the list of products in the database, and return the first 5 product from the list */
+
+const latestItem = async (req, res) => {
+    try {
+        let items = await Product.find({}).sort('-created').limit(5).populate('shop', '_id name').exec()
+        res.json(items)
+    } catch(err) {
+        return res.status(400).json({
+            error: errorHandler.getErrorMessage(err)
+        })
+    }
+}
 
 export default {
     create,
     listByShop,
+    latestItem,
 }

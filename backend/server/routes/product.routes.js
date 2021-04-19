@@ -14,6 +14,10 @@ router.route('/api/products/by/:shopId')
   .get(productCtrl.listByShop)
 
 
+//the api endpoint to fetch the latest product 
+router.route('/api/products/lates')
+  .get(productCtrl.latestItem)
+
 
 
 export default router

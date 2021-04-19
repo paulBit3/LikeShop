@@ -40,7 +40,27 @@ const listByShop = async (params, signal) => {
 
 
 
+
+/*---this method uses fetch to make a GET request and return latest product */
+const latestItem = async (signal) => {
+    try {
+        let res = await fetch('/api/products/lastest', {
+            method: 'GET',
+            signal: signal
+        })
+        return res.json()
+    } catch(err) {
+        console.log(err)
+    }
+}
+
+
+
+
+
+
 export {
     create,
-    listByShop
+    listByShop,
+    latestItem,
 }
