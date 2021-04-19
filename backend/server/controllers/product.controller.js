@@ -71,8 +71,47 @@ const latestItem = async (req, res) => {
     }
 }
 
+
+// -----------retrieve related products from the Database
+/* this method will return all related products by id*/
+const listRelated =  async (req, res) => {
+    try {
+        let items = await Product.find({"_id": {"$ne": req.product}, "category": req.product.category}).limit(5).populate('shop', '_id name').exec()
+        res.json(items)
+    } catch(err) {
+        return res.status(400).json({
+            error: errorHandler.getErrorMessage(err)
+        })
+    }
+}
+
+
+
+// -----------retrieve products from the Database
+/* this method will return all products by id*/
+const productByID = async (req, res, next, id) => {
+    try {
+        let item = await (await Product.findById(id)).populate('shop', '_id name').exec()
+        if (!item)
+          return res.status('400').json({
+              error: "No item found in the database"
+          })
+        req.item = item
+        next()
+    } catch(err) {
+        return res.status('400').json({
+            error: "The system could not retrieve item"
+        })
+    }
+}
+
+
+
+
 export default {
     create,
     listByShop,
     latestItem,
+    listRelated,
+    productByID,
 }

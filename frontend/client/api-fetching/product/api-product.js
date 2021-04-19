@@ -39,8 +39,6 @@ const listByShop = async (params, signal) => {
 
 
 
-
-
 /*---this method uses fetch to make a GET request and return latest product */
 const latestItem = async (signal) => {
     try {
@@ -55,6 +53,18 @@ const latestItem = async (signal) => {
 }
 
 
+/*---this method uses fetch call to populate the Suggestion component */
+const listRelated = async (params,signal) => {
+    try {
+        let res = await fetch('api/products/related/'+params.productId, {
+            method: 'GET',
+            signal: signal
+        })
+        return res.json()
+    } catch(err) {
+        console.log(err)
+    }
+}
 
 
 
@@ -63,4 +73,5 @@ export {
     create,
     listByShop,
     latestItem,
+    listRelated,
 }

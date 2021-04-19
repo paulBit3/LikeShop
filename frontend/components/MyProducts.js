@@ -17,7 +17,7 @@ import Divider from '@material-ui/core/Divider'
 import InfoIcon from '@material-ui/icons/Info';
 import {Link} from "react-router-dom";
 import { listByShop } from "../client/api-fetching/product/api-product";
-
+import DeleteProduct from './DeleteProduct';
 
 
 const useStyles = makeStyles(theme => ({
@@ -120,11 +120,16 @@ export default function MyProducts(props) {
                                         </IconButton>
                                     </Link>
                                     {/* implementing delete product here */}
+                                    <DeleteProduct
+                                      product={product}
+                                      shopId={props.shopId}
+                                      onRemove={removeItem} />
                                 </ListItemSecondaryAction>
+                                <Divider />
                             </Grid>
                             
                         );
-                        <Divider />
+                        
                     })}
                 </Grid>
             </Container>

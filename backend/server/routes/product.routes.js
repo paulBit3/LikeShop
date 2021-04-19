@@ -15,8 +15,23 @@ router.route('/api/products/by/:shopId')
 
 
 //the api endpoint to fetch the latest product 
-router.route('/api/products/lates')
+router.route('/api/products/latest')
   .get(productCtrl.latestItem)
+
+
+
+//the api endpoint to fetch the related product 
+router.route('/api/products/related/:productId')
+  .get(productCtrl.listRelated)
+
+
+
+//path containing the :productId parameter to retrieve the product from the database
+router.param('productId', productCtrl.productByID)
+
+
+
+
 
 
 
