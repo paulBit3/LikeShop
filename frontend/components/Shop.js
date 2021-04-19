@@ -1,19 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import Paper from '@material-ui/core/Paper';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemAvatar from '@material-ui/core/ListItemAvatar';
-import AddCircleIcon from '@material-ui/icons/AddCircle';
-import Fab from '@material-ui/core/Fab';
-import AddIcon from '@material-ui/icons/Add';
 import Avatar from '@material-ui/core/Avatar';
-import Edit from '@material-ui/icons/Edit';
-import Divider from '@material-ui/core/Divider';
 import {read} from "./../client/api-fetching/shop/api-shop";
 import Products from './Products';
 import {listByShop} from './..client/api-fetching/product/api-product';
-import { Box, Typography, IconButton, Card, CardContent, Grid } from '@material-ui/core';
+import { Box, Typography, IconButton, Container, Card, CardContent, Grid } from '@material-ui/core';
 
 
 

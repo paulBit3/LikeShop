@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import CardContent from "@material-ui/core/CardContent";
 import CardActions from "@material-ui/core/CardActions";
+import Container from '@material-ui/core/Container';
 import { PhotoCamera } from "@material-ui/icons";
 import Button from "@material-ui/core/Button";
 import UpdateIcon from '@material-ui/icons/Update';
@@ -14,7 +15,7 @@ import Typography from "@material-ui/core/Typography";
 import auth from './../client/helpers/auth-helpers';
 import {read, update} from "./../client/api-fetching/shop/api-shop";
 import {Link, Redirect} from "react-router-dom";
-
+import MyProducts from './MyProducts';
 
 /* Style declaration to define css styles(CSS-in-JS) for the component.
     makeStyles is a custom React hook API */
@@ -240,8 +241,10 @@ export default function EditShop({match}) {
                         </Button>
                     </Link>
                 </CardActions>
-                {/* implementing product here */}
-                <Grid item xs={6} sm={6}></Grid>
+                {/* implementing my products here */}
+                <Grid item xs={6} sm={6}>
+                    <MyProducts shopId={match.params.shopId}/>
+                </Grid>
                 
                 <Box mt={5}><Copyright /></Box>
                 

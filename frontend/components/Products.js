@@ -1,4 +1,6 @@
-import React, { useState } from "react";
+/* products component for buyers */
+
+import React from "react";
 import PropTypes from 'prop-types';
 import { makeStyles } from "@material-ui/core/styles";
 import GridList from '@material-ui/core/GridList';
@@ -104,7 +106,9 @@ export default function Products(props) {
                                 className={classes.title}
                                 >No products found! 
                                 :(</Typography>)}
-        
+            
+            {/* calling copyright function here */}
+            <Box mt={5}><Copyright /></Box>
         </div>);
 
 }

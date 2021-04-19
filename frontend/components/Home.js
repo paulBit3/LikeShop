@@ -2,9 +2,13 @@
 import React from 'react';
 import { makeStyles } from "@material-ui/core/styles";
 import Card from '@material-ui/core/Card';
+import Container from '@material-ui/core/Container';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
+import Button from "@material-ui/core/Button";
+import Grid from "@material-ui/core/Grid";
+import AddCircleIcon from '@material-ui/icons/AddCircle';
 import backImg from './../client/assets/images/showcase4.jpg';
 
 
@@ -35,18 +39,32 @@ const useStyles = makeStyles(theme => ({
 export default function Home() {
     const classes = useStyles()
     return (
-        <Card className={classes.card}>
-            <Typography variant="h3" className={classes.title}>
-                Welcome to your LikeShop
-            </Typography>
-            <CardMedia className={classes.media} image={backImg} title="Home Image"/>
-            <Typography variant="body1" component="p" className={classes.credit} color="textSecondary"></Typography>
-            <CardContent>
-                <Typography variant="body1" component="p">
-                    Shop and stay social.
-                </Typography>
-            </CardContent>
-            
-        </Card>
+        <div className={}>
+            <Container>
+                <Grid container spacing={4}>
+                    <Grid item xs={12} sm={6}>
+                        <Typography variant="h1" className={classes.title}>
+                            Welcome to LikeShop ecommerce plaform. Shop and stay social.
+                        </Typography>
+                        <Button className="shopping-button" href="#products">Shopping</Button> <br/>
+                        <Button className="create-shop-button"><AddCircleIcon />Add Shop</Button>
+                    </Grid>
+                    <Grid className="brand" item sm={6}>
+                        <img src={backImg} alt="logo" />
+                    </Grid>
+                </Grid>
+                <Card className={classes.card}>
+                    
+                    <Typography variant="body1" component="p" className={classes.credit} color="textSecondary"></Typography>
+                    <CardContent>
+                        <Typography variant="body1" component="p">
+                            
+                        </Typography>
+                    </CardContent>
+                
+                </Card>
+            </Container>
+        </div>
+     
     )
 }
