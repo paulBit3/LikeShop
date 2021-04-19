@@ -155,8 +155,8 @@ export default function EditShop({match}) {
     }
 
 
-    // retrieving the logo url
-    const logUrl = shop._id
+    // retrieving shop logo url
+    const logoUrl = shop._id
           ? `/api/shops/logo/${shop._id}?${new Date().getTime()}`
           : `/api/shops/defaultphoto`
 
@@ -175,7 +175,7 @@ export default function EditShop({match}) {
                             <Typography type="headline" component="h2" className={classes.title}>
                                 Edit your Shop
                             </Typography> <br/>
-                            <Avatar src={logUrl} className={classes.bigAvatar}/>
+                            <Avatar src={logoUrl} className={classes.bigAvatar}/>
                             <input
                                 accept="image/*"
                                 className={classes.input}

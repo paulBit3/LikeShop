@@ -1,21 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { makeStyles } from "@material-ui/core/styles";
-import GridList from '@material-ui/core/GridList';
-import GridListTile from '@material-ui/core/GridListTile';
-import GridListTileBar from '@material-ui/core/GridListTileBar';
-import ListSubheader from '@material-ui/core/ListSubheader';
-import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
-import Container from '@material-ui/core/Container';
 import Grid from "@material-ui/core/Grid";
 import AddShoppingCartSharpIcon from '@material-ui/icons/AddShoppingCartSharp';
 import VisibilitySharpIcon from '@material-ui/icons/VisibilitySharp';
-import Box from '@material-ui/core/Box';
-import AddCircleIcon from '@material-ui/icons/AddCircle';
-import EditSharpIcon from '@material-ui/icons/EditSharp';
-import IconButton from '@material-ui/core/IconButton';
-import Divider from '@material-ui/core/Divider'
-import InfoIcon from '@material-ui/icons/Info';
 import {Link} from "react-router-dom";
 import { Typography } from '@material-ui/core';
 
