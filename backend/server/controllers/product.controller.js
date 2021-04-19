@@ -106,12 +106,22 @@ const productByID = async (req, res, next, id) => {
 }
 
 
+// -----------retrieve a single product from the Database
+/* this method queries the Product collection with ID and return a single products*/
+const read = (req, res) => {
+    req.product.photo = undefined
+    return res.json(req.product)
+}
+
+
 
 
 export default {
     create,
+    read,
     listByShop,
     latestItem,
     listRelated,
     productByID,
+
 }

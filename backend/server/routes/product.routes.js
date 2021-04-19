@@ -25,6 +25,11 @@ router.route('/api/products/related/:productId')
   .get(productCtrl.listRelated)
 
 
+//the api endpoint to retrieve a single product
+router.route('/api/products/:productId')
+.get(productCtrl.read)
+
+
 
 //path containing the :productId parameter to retrieve the product from the database
 router.param('productId', productCtrl.productByID)

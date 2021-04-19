@@ -24,6 +24,22 @@ const create = async (params, credentials, product) => {
 }
 
 
+/*---this method uses fetch to make a GET request and return individual product details */
+const read = (params, signal) => {
+    try {
+        let res = await fetch('/api/products' +params.productId, {
+            method: 'GET',
+            signal: signal
+        })
+        return res.json()
+    } catch(err) {
+        console.log(err)
+    }
+}
+
+
+
+
 /*---this method uses fetch to make a GET request and return product from a specific shops  */
 const listByShop = async (params, signal) => {
     try {
@@ -71,6 +87,7 @@ const listRelated = async (params,signal) => {
 
 export {
     create,
+    read,
     listByShop,
     latestItem,
     listRelated,
