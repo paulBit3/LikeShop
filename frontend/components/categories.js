@@ -7,10 +7,11 @@ import GridList from '@material-ui/core/GridList';
 import GridListTile from '@material-ui/core/GridListTile';
 import Divider from '@material-ui/core/Divider'
 import Icon from '@material-ui/core/Icon';
-import {Link, Redirect} from "react-router-dom";
-import {list} from "./../client/api-fetching/product/api-product";
-import Products from './Products';
+import Box from '@material-ui/core/Box';
+import {Link} from "react-router-dom";
 import { Typography } from "@material-ui/core";
+import {list} from "../client/api-fetching/product/api-product";
+import Products from './Products';
 
 
 /* Style declaration to define css styles(CSS-in-JS) for the component.
@@ -144,6 +145,8 @@ export default function Categories(props) {
             </div>
             <Divider/>
             <Products products={products} searched={false}/>
+            {/* calling copyright function here */}
+            <Box mt={5}><Copyright /></Box>
         </div>
     )
 }

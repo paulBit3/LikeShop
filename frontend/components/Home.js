@@ -11,7 +11,7 @@ import Button from "@material-ui/core/Button";
 import Grid from "@material-ui/core/Grid";
 import Box from '@material-ui/core/Box';
 import AddCircleIcon from '@material-ui/icons/AddCircle';
-import backImg from './../client/assets/images/showcase4.jpg';
+// import backImg from './../client/assets/images/showcase4.jpg';
 import {Link} from 'react-router-dom';
 
 
