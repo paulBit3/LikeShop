@@ -5,16 +5,12 @@ import PropTypes from 'prop-types';
 import { makeStyles } from "@material-ui/core/styles";
 import GridList from '@material-ui/core/GridList';
 import GridListTile from '@material-ui/core/GridListTile';
-import GridListTileBar from '@material-ui/core/GridListTileBar';
-import ListSubheader from '@material-ui/core/ListSubheader';
-import Grid from "@material-ui/core/Grid";
-import Box from '@material-ui/core/Box';
-import AddCircleIcon from '@material-ui/icons/AddCircle';
-import IconButton from '@material-ui/core/IconButton';
-import InfoIcon from '@material-ui/icons/Info';
+import Divider from '@material-ui/core/Divider'
+import Icon from '@material-ui/core/Icon';
 import {Link, Redirect} from "react-router-dom";
 import {list} from "./../client/api-fetching/product/api-product";
 import Products from './Products';
+import { Typography } from "@material-ui/core";
 
 
 /* Style declaration to define css styles(CSS-in-JS) for the component.
@@ -58,7 +54,17 @@ const useStyles = makeStyles(theme => ({
         marginBottom:'5px',
         color:'rgb(189, 222, 219)',
         display:'block'
-    }
+    },
+    link: {
+        color: '#d87f2b',
+        textShadow: '0px 2px 12px #ffffff',
+        cursor:'pointer'
+    },
+    icon: {
+        verticalAlign: 'sub',
+        color: '#738272',
+        fontSize: '0.9em'
+    },
 }))
 
 //our copyright function
@@ -118,6 +124,30 @@ export default function Categories(props) {
 
 
     return (
-        <div></div>
+        <div className={classes.root}>
+            <Typography type="title" className={classes.title}>Explore more items by category</Typography>
+            <div className={classes.container}>
+                <GridList cellHeight={180} className={classes.gridList} cols={3}>
+                    {props.categories.map((tile, i) => (
+                        <GridListTile key={i} 
+                                      className={classes.tileTitle}
+                                      style={{height: '64px', backgroundColor: selected == tile? '#e3edef' : '#9da2a8'}}>
+                            <span className={classes.link} onClick={listByCategory(tile)}>
+                                {tile}
+                                <Icon className={classes.icon}>
+                                    {selected == tile && 'arrow_drop_down'}
+                                </Icon>
+                            </span>
+                        </GridListTile>
+                            ))}
+                </GridList>
+            </div>
+            <Divider/>
+            <Products products={products} searched={false}/>
+        </div>
     )
+}
+
+Categories.propTypes = {
+    categories: PropTypes.array.isRequired
 }
