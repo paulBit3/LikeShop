@@ -4,11 +4,6 @@
 const path = require('path');
 const webpack = require('webpack');
 
-//clean up the dist directory 
-const { CleanWebpackPlugin } = require('clean-webpack-plugin');
-
-//handling inserting
-// const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 
 const CURRENT_WORKING_DIR = process.cwd();
@@ -20,11 +15,11 @@ const config = {
     devtool: 'eval-source-map',
     entry: [
         'webpack-hot-middleware/client?reload=true',
-        path.resolve(CURRENT_WORKING_DIR , 'frontend/client/index.js')
+        path.join(CURRENT_WORKING_DIR , 'frontend/client/index.js')
     ],
     output: {
         filename: 'bundle.js',
-        path: path.resolve(CURRENT_WORKING_DIR , '/dist'),
+        path: path.join(CURRENT_WORKING_DIR , '/dist'),
         publicPath: '/dist/' // Webpack dev middleware, if enabled, handles requests for this URL prefix
     },
     module: {
@@ -45,12 +40,6 @@ const config = {
     plugins: [
         new webpack.HotModuleReplacementPlugin(),
         new webpack.NoEmitOnErrorsPlugin(),
-        new CleanWebpackPlugin(),
-/*         new HtmlWebpackPlugin({
-            filename: 'template.js',
-            inject: true,
-            template: path.resolve(CURRENT_WORKING_DIR, 'template.js')
-        }), */
     ],
     resolve:  {
         alias: {
@@ -58,7 +47,7 @@ const config = {
         }
     },
     devServer: {
-        contentBase: path.resolve(__dirname, 'public'),
+        contentBase: path.join(__dirname, 'public'),
         watchContentBase: true,
         publicPath: "/dist/",
         historyApiFallback: true,

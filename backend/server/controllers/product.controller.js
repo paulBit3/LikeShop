@@ -100,6 +100,25 @@ const listCategories = async (req, res) => {
 }
 
 
+// -----------processing a query parameter
+/* this method process a query parameter in a request to find a product 
+in a given  category. if any , with names taht partially match with the provided search text*/
+const list = async (req, res) => {
+    const query = {}
+    if (req.query.search)
+       query.name = {'$regex': req.query.serach, '$options': "i"}
+    if (req.query.category && req.query.category != 'All')
+       query.category = req.query.category
+    try {
+        let items = await Product.find(query).populate('shop', '_id name').select('-photo').exec()
+        res.json(items)
+    } catch(err) {
+        return res.status(400).json({
+            error: errorHandler.getErrorMessage(err)
+        })
+    }
+}
+
 
 // -----------retrieve products from the Database
 /* this method will return all products by id*/
@@ -186,6 +205,7 @@ export default {
     latestItem,
     listRelated,
     listCategories,
+    list,
     productByID,
 
 }

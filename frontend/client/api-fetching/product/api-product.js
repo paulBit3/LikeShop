@@ -99,9 +99,24 @@ const listCategories = async (signal) => {
 }
 
 
+// -----------processing a query parameter
+/* this API use teh fetch method to construct the query parameter 
+   to search a product in a given  category.*/
+const list = async (params, signal) => {
+    const query = queryString.stringify(params)
+    try {
+        let res = await fetch('/api/products?'+query, {
+            method: 'GET',
+        })
+        return res.json()
+    } catch(err) {
+        console.log(err)
+    }
+}
+
 
 // ----------- Update the product from the database
-/* This method uses a fetch method to send multipart form data with a PUT request
+/* This API uses a fetch method to send multipart form data with a PUT request
 to the edit product API in the backend received at /api/products/by/:shopId */
 const update = async (params, credentials, item) => {
     try {
@@ -151,4 +166,5 @@ export {
     latestItem,
     listRelated,
     listCategories,
+    list,
 }
