@@ -86,6 +86,20 @@ const listRelated =  async (req, res) => {
 }
 
 
+// -----------retrieve all categories products from the Database
+/* this method retrieve distinct categories in Product collection and return a array of unique categories*/
+const listCategories = async (req, res) => {
+    try {
+        let items = await Product.distinct('category', {})
+        res.json(items)
+    } catch(err) {
+        return res.status(400).json({
+            error: errorHandler.getErrorMessage(err)
+        })
+    }
+}
+
+
 
 // -----------retrieve products from the Database
 /* this method will return all products by id*/
@@ -114,14 +128,64 @@ const read = (req, res) => {
 }
 
 
+// ----------- Update the product from the database
+/* this method use formidable and fs module to parse form data and update existing product */
+const update = (req, res) => {
+    let form = new formidable.IncomingForm()
+    form.keepExtensions = true
+    form.parse(req, async (err, fields, files) => {
+        if (err) {
+            res.status(400).json({
+                message: "Photo could not be uploaded"
+            })
+        }
+        let item = req.item
+        item = extend(item, fields)
+        item.updated =  Date.now()
+        if (files.photo) {
+            item.photo.data = fs.readFileSync(files.photo.path)
+            item.photo.contentType = files.photo.type
+        }
+        try {
+            let result = await item.save()
+            res.json(result)
+        } catch (err) {
+            return res.status(400).json({
+                error: errorHandler.getErrorMessage(err)
+            })
+        }
+    })
+}
+
+
+
+// ----------- Removing a product from the database
+/* this method controller check if 
+the signed user is the owner of the shop, then remove a product*/
+const remove = async (req, res) => {
+    try {
+        let item = req.item
+        let removedItem = await item.remove()
+        res.json(removedItem)
+    } catch(err) {
+        return res.status(400).json({
+            error: errorHandler.getErrorMessage(err)
+        })
+    }
+}
+
+
 
 
 export default {
     create,
     read,
+    update,
+    remove,
     listByShop,
     latestItem,
     listRelated,
+    listCategories,
     productByID,
 
 }

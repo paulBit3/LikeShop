@@ -16,11 +16,10 @@ import { Redirect } from 'react-router-dom';
 
 /* our delete user function. this component will receive props from the parent component.
 props will contain the userId that was sent from profile component */
-export default function DeleteUser(props) {
+export default function DeleteShop(props) {
     //initialize the state with open set to false
     const [open, setOpen] = useState(false)
-    //set redirect to false so that it is not rendered 1st
-    const [redirect, setRedirect] = useState(false)
+
 
     const jwt = auth.isAuthenticated()
 

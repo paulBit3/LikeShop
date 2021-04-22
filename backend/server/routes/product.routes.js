@@ -31,6 +31,18 @@ router.route('/api/products/:productId')
 
 
 
+//the api endpoint to update existing product in the database, if the user is a authorized seller
+router.route('/api/product/:shopId/:productId')
+  .put(authCtrl.requireSignin, shopCtrl.isOwner, productCtrl.update)
+  .delete(authCtrl.requireSignin, shopCtrl.isOwner, productCtrl.remove)
+
+
+//the api endpoint to retrieve categories in Product collection
+router.route('/api/products/categories')
+  .get(productCtrl.listCategories)
+
+
+
 //path containing the :productId parameter to retrieve the product from the database
 router.param('productId', productCtrl.productByID)
 

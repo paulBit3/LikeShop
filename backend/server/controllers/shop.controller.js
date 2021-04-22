@@ -152,7 +152,7 @@ const isOwner = (req, res, next) => {
 }
 
 
-// ----------- Removing a shop in the database
+// ----------- Removing a shop from the database
 /* this method controller check if the signed user is the owner of the shop, then remove it*/
 const remove = async (req, res) => {
     try {

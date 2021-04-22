@@ -25,7 +25,7 @@ const create = async (params, credentials, product) => {
 
 
 /*---this method uses fetch to make a GET request and return individual product details */
-const read = (params, signal) => {
+const read = async (params, signal) => {
     try {
         let res = await fetch('/api/products' +params.productId, {
             method: 'GET',
@@ -85,10 +85,70 @@ const listRelated = async (params,signal) => {
 
 
 
+/* this method use the fetch method to retrieve distinct categories in Product collection */
+const listCategories = async (signal) => {
+    try {
+        let res = await fetch('/api/products/categories', {
+            method: 'GET',
+            signal: signal
+        })
+        return res.json()
+    } catch(err) {
+        console.log(err)
+    }
+}
+
+
+
+// ----------- Update the product from the database
+/* This method uses a fetch method to send multipart form data with a PUT request
+to the edit product API in the backend received at /api/products/by/:shopId */
+const update = async (params, credentials, item) => {
+    try {
+        let res = await fetch('/api/product/' + params.shopId+'/'+params.productId, {
+            method: 'PUT',
+            headers: {
+                'Accept': 'application/json',
+                'Authorization': 'Bearer ' + credentials.t
+            },
+            body: item
+
+        })
+        return res.json()
+    } catch(err) {
+        console.log(err)
+    }
+}
+
+
+// ----------- deleting product from the database
+/* This method uses the fetch method for delete which 
+makes the  DELETE request at /api/product/:shopId/:productId*/
+const remove = async (params, credentials) => {
+    try {
+      let res = await fetch('/api/product/' + params.shopId +'/'+params.productId, {
+        method: 'DELETE',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer ' + credentials.t
+        }
+      })
+      return res.json()
+    } catch(err) {
+      console.log(err)
+    }
+  }
+
+
+
 export {
     create,
     read,
+    update,
+    remove,
     listByShop,
     latestItem,
     listRelated,
+    listCategories,
 }

@@ -16,7 +16,7 @@ import IconButton from '@material-ui/core/IconButton';
 import Divider from '@material-ui/core/Divider'
 import InfoIcon from '@material-ui/icons/Info';
 import {Link} from "react-router-dom";
-import { listByShop } from "../client/api-fetching/product/api-product";
+import {listByShop} from "./../client/api-fetching/product/api-product";
 import DeleteProduct from './DeleteProduct';
 
 

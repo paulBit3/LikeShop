@@ -28,7 +28,7 @@ export default ({html, css}) => {
      </head>
      <body>
       <div id="root">${html}</div>
-      <script src="dist/bundle.js"></script>
+      
      </body>
     </html>`
 }

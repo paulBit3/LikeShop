@@ -15,6 +15,8 @@ import MyShops from './MyShops';
 import Shop from './Shop';
 import EditShop from './EditShop';
 import NewProduct from './NewProduct';
+import EditProduct from './EditProduct';
+import Product from './Product';
 import PrivateRoute from './PrivateRoute';
 import Header from './Header';
 
@@ -50,6 +52,9 @@ const CoreRouter = () => {
                 {/* to add the Profile component to the App */}
                 <Route path="/user/:userId" component={Profile} />
                 
+                {/* to display single product to visitor */}
+                <Route path="/product/:productId" component={Product} />
+                
                 {/* to redirect the user to a view displaying all shops */}
                 <Route path="/shops/all" component={Shops} />
 
@@ -62,11 +67,14 @@ const CoreRouter = () => {
                 {/* to displaying the owner shops */}
                 <PrivateRoute path="/seller/shops" component={MyShops} />
 
-                {/* to Editing the owner shops */}
+                {/* to Edit the owner shops */}
                 <PrivateRoute path="/seller/shop/edit/:shopId" component={EditShop} />
                 
                 {/* to add a new product to owner shops */}
                 <PrivateRoute path="/seller/:shopId/products/new" component={NewProduct} />
+
+                {/* to edit a product to owner shops */}
+                <PrivateRoute path="/seller/:shopId/productId/edit" component={EditProduct} />
             </Switch>
         </div>
     )

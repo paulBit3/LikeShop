@@ -11,7 +11,7 @@ import Box from '@material-ui/core/Box';
 import TextField from '@material-ui/core/TextField';
 import Typography from "@material-ui/core/Typography";
 import auth from './../client/helpers/auth-helpers';
-import {create} from "./../client/api-fetching/shop/api-shop";
+import {create} from "./../client/api-fetching/shop/api-shop.js";
 import {Link, Redirect} from "react-router-dom";
 
 

@@ -156,8 +156,8 @@ export default function EditShop({match}) {
 
 
     // retrieving shop logo url
-    const logoUrl = shop._id
-          ? `/api/shops/logo/${shop._id}?${new Date().getTime()}`
+    const logoUrl = state.id
+          ? `/api/shops/logo/${state.id}?${new Date().getTime()}`
           : `/api/shops/defaultphoto`
 
     //redirect the user to the view, when successful shop creation
@@ -231,7 +231,7 @@ export default function EditShop({match}) {
                         <UpdateIcon />
                     </Button>
                     <Link 
-                    to='/seller/shops' 
+                    to={'/seller/shops/edit/' +match.params.shopId} 
                     className={classes.submit}
                     >
                         <Button 

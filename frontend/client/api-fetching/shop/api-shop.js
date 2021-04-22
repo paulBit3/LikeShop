@@ -68,6 +68,9 @@ const read = async (params, signal) => {
 }
 
 
+// ----------- Update the shop from the database
+/* This method uses a fetch method to send multipart form data with a PUT request
+to the edit shop API in the backend received at /api/shops/:shopId */
 const update = async (params, credentials, shop) => {
     try {
         let res = await fetch('/api/shops/' + params.shopId, {

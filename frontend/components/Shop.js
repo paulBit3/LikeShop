@@ -3,7 +3,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Avatar from '@material-ui/core/Avatar';
 import {read} from "./../client/api-fetching/shop/api-shop";
 import Products from './Products';
-import {listByShop} from './..client/api-fetching/product/api-product';
+import {listByShop} from "./../client/api-fetching/product/api-product";
 import { Box, Typography, IconButton, Container, Card, CardContent, Grid } from '@material-ui/core';
 
 

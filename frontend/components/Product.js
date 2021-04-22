@@ -1,19 +1,13 @@
 /* products component for shop owners */
 import React, { useState, useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
 import Container from '@material-ui/core/Container';
 import Grid from "@material-ui/core/Grid";
 import CardMedia from '@material-ui/core/CardMedia'
 import Box from '@material-ui/core/Box';
-import AddCircleIcon from '@material-ui/icons/AddCircle';
-import EditSharpIcon from '@material-ui/icons/EditSharp';
-import IconButton from '@material-ui/core/IconButton';
-import Divider from '@material-ui/core/Divider'
 import Avatar from '@material-ui/core/Avatar';
-import InfoIcon from '@material-ui/icons/Info';
 import {Link} from "react-router-dom";
-import { read, listRelated } from "../client/api-fetching/product/api-product";
+import { read, listRelated } from "./../client/api-fetching/product/api-product";
 import Suggestions from './Suggestions';
 
 
@@ -82,6 +76,20 @@ const useStyles = makeStyles(theme => ({
 
 }))
 
+
+
+//our copyright function
+function Copyright(){
+    return (
+        <Typography variant="body2" color="textSecondary" align="center">
+            {'Copyright ©'}
+            <Link color="inherit" href="/">Oficy Inc.
+            </Link>{''}
+            {new Date().getFullYear()}
+            {'.'}
+        </Typography>
+    );
+}
 
 
 
@@ -173,8 +181,16 @@ export default function Product({match}) {
                             </Grid>
                         </div>
                     </Grid>
+                    {suggestions.length > 0 &&
+                    (
+                        <Grid item xs={5} sm={5}>
+                            <Suggestions products={suggestions} title="Products related to this item." />
+                        </Grid>
+                    )}
                 </Grid>
             </Container>
+            {/* calling copyright function here */}
+            <Box mt={5}><Copyright /></Box>
         </div>
     )
 };

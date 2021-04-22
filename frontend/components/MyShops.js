@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
-import Paper from '@material-ui/core/Paper';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemAvatar from '@material-ui/core/ListItemAvatar';
@@ -17,9 +16,9 @@ import Edit from '@material-ui/icons/Edit';
 import Box from '@material-ui/core/Box';
 import Divider from '@material-ui/core/Divider';
 import auth from './../client/helpers/auth-helpers';
-import {listByOwner} from "./../client/api-fetching/shop/api-shop";
+import {listByOwner} from "./../client/api-fetching/shop/api-shop.js";
 import {Redirect, Link} from 'react-router-dom';
-import DeleteShop from './DeleteShop'
+import DeleteShop from './DeleteShop';
 
 
 
@@ -128,7 +127,7 @@ export default function MyShops(){
                               aria-label="add" 
                               className={classes.margin}
                             >
-                                <AddIcon />
+                                <AddCircleIcon />
                             </Fab>
                         </Link>
                     </span>
