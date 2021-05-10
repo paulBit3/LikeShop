@@ -11,46 +11,16 @@ import cart from './../client/helpers/cart-helpers';
 
 /* Style declaration to define css styles(CSS-in-JS) for the component.
     makeStyles is a custom React hook API */
-    const useStyles = makeStyles(theme => ({
-        root: {
-            display: 'flex',
-            flexWrap: 'wrap',
-            justifyContent: 'space-around',
-            overflow: 'hidden',
-            background: theme.palette.background.paper,
-            textAlign: 'left',
-            padding: '0 8px'
-        },
-        container: {
-            minWidth: '100%',
-            paddingBottom: '14px'
-        },
-        gridList: {
-            width: '100%',
-            minHeight: 200,
-            padding: '16px 0 10px'
-        },
-        title: {
-            padding:`${theme.spacing(3)}px ${theme.spacing(2.5)}px ${theme.spacing(2)}px`,
-            color: theme.palette.openTitle,
-            width: '100%'
-        },
-        tile: {
-            textAlign: 'center'
-        },
-        image: {
-            height: '100%'
-        },
-        tileBar: {
-            backgroundColor: 'rgba(0, 0, 0, 0.72)',
-            textAlign: 'left'
-        },
-        tileTitle: {
-            fontSize:'1.1em',
-            marginBottom:'5px',
-            color:'rgb(189, 222, 219)',
-            display:'block'
-        }
+const useStyles = makeStyles(theme => ({
+    IconButton: {
+        width: '28px',
+        height: '28px',
+    },
+     disableIconButton: {
+        color: '#7f7563',
+        width: '28px',
+        height: '28px'
+    },
 }))
 
 
@@ -61,5 +31,34 @@ export default function AddToCart(props) {
     const classes = useStyles();
     const [redirect, setRedirect] = useState(false);
 
-    const addToCart = () => {}
+    //this method invokes the additem helper method
+    const addToCart = () => {
+        cart.addItem(props.item, () => {
+            setRedirect({redirect:true})
+        })
+    }
+
+    if (redirect) {
+        return (<Return to={'/cart'}/>)
+    }
+
+    return (
+        <div>
+            <span>
+                {props.item.quantity >= 0?
+                 <IconButton color="secondary" dense="dense" onClick={addToCart}>
+                    <AddShoppingCartIcon className={props.cartStyle || classes.IconButton}/>
+                 </IconButton> :
+                  <IconButton disable={true} color="secondary" dense="dense">
+                    <DisabledCartIcon className={props.cartStyle || classes.disableIconButton}/>
+                  </IconButton>
+                }
+            </span>
+        </div>
+    )
+}
+
+AddToCart.propTypes = {
+    item: PropTypes.object.isRequired,
+    cartStyle: PropTypes.string
 }
