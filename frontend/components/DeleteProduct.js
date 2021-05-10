@@ -74,7 +74,7 @@ export default function DeleteProduct(props) {
                 <Button onClick={handlerDialogClose} color="primary">
                     Cancel
                 </Button>
-                <Button onClick={removeItem} color="secondary" autoFocus="autoFocus">
+                <Button onClick={removedItem} color="secondary" autoFocus="autoFocus">
                     Confirm
                 </Button>
             </DialogActions>

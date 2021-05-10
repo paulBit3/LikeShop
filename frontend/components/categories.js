@@ -83,7 +83,7 @@ function Copyright(){
 
 
 export default function Categories(props) {
-    const classses = useStyles()
+    const classes = useStyles()
     const [products, setProducts] = useState([])
     const [selected, setSelected] = useState(props.categories[0])
 

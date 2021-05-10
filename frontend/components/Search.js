@@ -54,7 +54,7 @@ export default function Search(props) {
         category: '',
         search: '',
         results: [],
-        serached: false
+        searched: false
     })
 
     //this method takes the new value in the input and sets it as the state
@@ -104,7 +104,7 @@ export default function Search(props) {
                margin="normal">
                    <MenuItem value="All Categories"></MenuItem>
                    { props.categories.map(option => (
-                       <MenuItem key={option} value={option}>{option}</MenuItem>
+                       <MenuItem key={option} value={option}> {option} </MenuItem>
                    ))}
             </TextField>
             <Autocomplete
