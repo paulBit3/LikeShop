@@ -15,9 +15,12 @@ import MenuIcon from '@material-ui/icons/Menu';
 import HomeIcon from '@material-ui/icons/Home';
 import Button from '@material-ui/core/Button';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
+import Badge from '@material-ui/core/Badge';
+
 import auth from './../client/helpers/auth-helpers';
 import { Link, withRouter } from 'react-router-dom';
 import { Block } from '@material-ui/icons';
+import cart from './../client/helpers/cart-helpers';
 
 
 //import { createMemoryHistory } from 'history';
@@ -249,7 +252,13 @@ const Header = withRouter(({history}) => {
                         }
                         <Link to="/cart">
                             <Button color="inherit" style={isActive(history, "/cart")}>
-                                <AddShoppingCartIcon /> Cart</Button>
+                                Cart
+
+                                {/* adding cart with exception */}
+                                <Badge color="secondary" invisible={false} badgeContent={cart.itemTotal()} style={{'marginLeft': '7px'}}>
+                                    <AddShoppingCartIcon />
+                                </Badge>
+                            </Button>
                         </Link>
                     </span></div>
                 </Toolbar>

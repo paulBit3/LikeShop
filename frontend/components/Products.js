@@ -7,8 +7,10 @@ import GridList from '@material-ui/core/GridList';
 import GridListTile from '@material-ui/core/GridListTile';
 import GridListTileBar from '@material-ui/core/GridListTileBar';
 import Box from '@material-ui/core/Box';
-import AddCircleIcon from '@material-ui/icons/AddCircle';
+//import AddCircleIcon from '@material-ui/icons/AddCircle';
 import {Link} from "react-router-dom";
+
+import AddToCart from './AddToCart';
 
 
 /* Style declaration to define css styles(CSS-in-JS) for the component.
@@ -90,7 +92,7 @@ export default function Products(props) {
                                         title={<Link to={"/product/"+product._id} className={classes.tileTitle}>{product.name}</Link>}
                                         subtitle={<span>$ {product.price}</span>}
                                         actionIcon={
-                                            <AddCircleIcon item={product}/>
+                                            <AddToCart item={product}/>
                                         }
                                     />
                                 </GridListTile>
