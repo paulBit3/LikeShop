@@ -70,7 +70,7 @@ function Copyright(){
 
 
 export default function Products(props) {
-    const classes = useStyles()
+    const classes = useStyles();
 
     return ( 
         <div className={classes.root}>
