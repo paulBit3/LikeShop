@@ -40,7 +40,7 @@ export default function Cart () {
                 </Grid>
                 {checkout && 
                     <Grid item xs={6} sm={6}>
-                        {/**implementing Stripse payment here */}
+                        {/**implementing Stripe payment here */}
                     </Grid>
                 }
             </Grid>
