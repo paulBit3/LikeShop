@@ -16,10 +16,10 @@ import HomeIcon from '@material-ui/icons/Home';
 import Button from '@material-ui/core/Button';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import Badge from '@material-ui/core/Badge';
-
-import auth from './../client/helpers/auth-helpers';
 import { Link, withRouter } from 'react-router-dom';
 import { Block } from '@material-ui/icons';
+
+import auth from './../client/helpers/auth-helpers';
 import cart from './../client/helpers/cart-helpers';
 
 

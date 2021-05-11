@@ -17,6 +17,7 @@ import EditShop from './EditShop';
 import NewProduct from './NewProduct';
 import EditProduct from './EditProduct';
 import Product from './Product';
+import CartView from './CartView';
 import PrivateRoute from './PrivateRoute';
 import Header from './Header';
 
@@ -51,6 +52,9 @@ const CoreRouter = () => {
 
                 {/* to add the Profile component to the App */}
                 <Route path="/user/:userId" component={Profile} />
+
+                {/* to display shopping cart  to visitor */}
+                <Route path="/cart/" component={CartView} />
                 
                 {/* to display single product to visitor */}
                 <Route path="/product/:productId" component={Product} />
