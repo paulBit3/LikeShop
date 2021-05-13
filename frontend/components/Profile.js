@@ -15,11 +15,13 @@ import Edit from '@material-ui/icons/Edit';
 import Person from '@material-ui/icons/Person';
 import Box from '@material-ui/core/Box';
 import Divider from '@material-ui/core/Divider';
+import { Redirect, Link} from 'react-router-dom';
+import stripeButton from './../client/assets/images/stripe_button.png';
+
 import DeleteUser from './DeleteUser';
 import auth from './../client/helpers/auth-helpers';
 import {read} from './../client/api-fetching/api-user.js';
-import { Redirect, Link} from 'react-router-dom';
-
+import config from '../../../config/config';
 
 
 /* Style declaration to define css styles(CSS-in-JS) for the component.
@@ -45,6 +47,10 @@ const useStyles = makeStyles((theme) => ({
         marginTop: theme.spacing(2),
         color: theme.palette.openTitle,
     },
+    stripe_connected: {
+        verticalAlign: 'super',
+        marginRight: '10px'
+    }
 }));
     
 
@@ -114,6 +120,25 @@ export default function Profile({ match }){
                      <ListItemText primary={user.name} secondary={user.email} /> {
                          auth.isAuthenticated().user && auth.isAuthenticated().user._id == user._id &&
                          (<ListItemSecondaryAction>
+                             {/* check if user is a seller and Stripe account exists otherwise 
+                             not show stripe button */}
+                             
+                             {user.seller &&
+                               (user.stripe_seller
+                                ? (<Button variant="contained" disabled className={classes.stripe_connected}>
+                                    Stripe Connected
+                                </Button>)
+                                : (<a 
+                                     href={"https://connect.stripe.com/oauth/authorize?response_type=code&client_id="
+                                     +config.stripe_connect_client_id+
+                                     "&scope=read_write"}
+                                     className={classes.stripe_connected}
+                                    >
+                                    <img src={stripeButton} />
+                                </a>)
+                                )
+                             }
+
                              <Link to={"/user/edit/" + user._id}>
                                  <IconButton aria-label="Edit" color="primary">
                                      <Edit/>
@@ -129,6 +154,8 @@ export default function Profile({ match }){
                         new Date(user.created)).toDateString()}/>
                  </ListItem>
              </List>
+             {/*my order goes here*/}
+             
             {/* calling copyright function here */}
             <Box mt={5}><Copyright /></Box>
          </Paper>
