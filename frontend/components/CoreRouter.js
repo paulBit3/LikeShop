@@ -80,7 +80,7 @@ const CoreRouter = () => {
                 {/* to edit a product to owner shops */}
                 <PrivateRoute path="/seller/:shopId/productId/edit" component={EditProduct} />
 
-                {/* owner shops or seller stripe connect link*/}
+                {/* owner shops or seller stripe connect url. seller will be redirect to this url*/}
                 <Route path="/seller/stripe/connect" component={} />
             </Switch>
         </div>

@@ -14,8 +14,8 @@ const config = {
      (process.env.MONGO_PORT || '27017') +
      '/likeshop',
      stripe_connect_client_id: 'YOUR_stripe_connect_client',
-     stripe_pub_secret_key: 'pk_live_51IpPJZFfQp6SpxzSe9heZp6dpVSWj6oXtO9BVvVpvn7nlYkle7LTngTpyUR0RbpLssDlH17BJ5qHpN3JBckiXkm2001M7PIgt9',
-     stripe_api_key: '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'
+     stripe_pub_secret_key: 'YOUR_stripe_pub_key',
+     stripe_api_key: 'YOUR_stripe_API_key',
 }
 
 export default config
