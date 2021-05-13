@@ -25,6 +25,9 @@ router.route('/api/users/:userId')
   .put(authCtrl.requireSignin, authCtrl.hasAuthorization, userCtrl.update)
   .delete(authCtrl.requireSignin,  authCtrl.hasAuthorization, userCtrl.remove)
  
+router.route('/api/users/:userId')
+  .put(authCtrl.requireSignin, authCtrl.hasAuthorization, userCtrl.stripe_auth, userCtrl.update)
+
 
 //path containing the :userId parameter
 router.param('userId', userCtrl.userByID)

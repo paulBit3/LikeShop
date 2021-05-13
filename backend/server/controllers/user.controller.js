@@ -2,13 +2,24 @@
 when a route request is received by the server */
 
 import User from '../models/user.model';
+
 //lodash library when updating an exixting user with change value
 import extend from 'lodash/extend';
-import errorHandler from './../helper/dbErrorHandler';
 
+import errorHandler from './../helper/dbErrorHandler';
+import request from 'request';
+import config from './../../config/config';
+import stripe from 'stripe';
 
 
 /* Our API endpoint user controller function. */
+
+
+const userStripe = stripe(config.stripe_pub_secret_key);
+
+
+
+
 
 // ----------- Creating a new user
 /* our function to create a new user. when the Express app gets a 
@@ -129,6 +140,30 @@ const isSeller = (req, res, next) => {
 }
 
 
+//------------ This controller method will make POST request to the Stripe API
+// It take the platform's secret key and the retrieve auth code to complete the authorization-------
+const stripe_auth = (req, res, next) => {
+    request({
+        url: 'https://connect.stripe.com/oauth/token',
+        method: 'POST',
+        json: true,
+        body: {clien_secret:config.stripe_pub_secret_key, code:req.body.stripe, grant_type:'authorization_code'}
+    }, (error, response, body) => {
+        //update the user
+        if (body.error) {
+            return res.status('400').json({
+                error: body.error_description
+            })
+        }
+        req.body.strip_seller = body
+        next()
+    })
+}
+
+
+
+
+
 export default { 
     create, 
     userByID, 
@@ -137,4 +172,5 @@ export default {
     remove, 
     update,
     isSeller,
+    stripe_auth,
 }
