@@ -161,6 +161,45 @@ const stripe_auth = (req, res, next) => {
 }
 
 
+//------------ This controller method will check whether the current user exist in the DB
+//so it will create or update customer information such as credit card, etc...-------
+const customer_Object = (req, res, next) => {
+    if (req.profile.stripe_customer) {
+        //updating existing customer infos
+        stripe_auth.customers.update(req.profile.stripe_customer, {
+            source: req.body.token
+        }, (err, customer) => {
+            if (err) {
+                return res.status(400).send({
+                    error: "Something went wrong, could not perform update"
+                })
+            }
+            req.body.order.payment_id = customer.id
+            next()
+        })
+    } else {
+        //if not customer object exist
+        stripe_auth.customers.create({
+            email: req.profile.email,
+            source: req.body.token
+        }).then((customer) => {
+            User.updateOne(
+                {'_id':req.profile._id}, 
+                {'$set': {'customer_object': customer.id}},
+                (err, order) => {
+                    if (err) {
+                        return res.status(400).send({
+                            error: errorHandler.getErrorMessage(err)
+                        })
+                    }
+                    req.body.order.payment_id = customer.id
+                    next()
+                })
+        })
+    }
+}
+
+
 
 
 
