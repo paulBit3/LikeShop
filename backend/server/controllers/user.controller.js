@@ -140,7 +140,7 @@ const isSeller = (req, res, next) => {
 }
 
 
-//------------ This controller method will make POST request to the Stripe API
+//------------ Creating a Strip conttoller method. This controller method will make POST request to the Stripe API
 // It take the platform's secret key and the retrieve auth code to complete the authorization-------
 const stripe_auth = (req, res, next) => {
     request({
@@ -166,7 +166,7 @@ const stripe_auth = (req, res, next) => {
 const customer_Object = (req, res, next) => {
     if (req.profile.stripe_customer) {
         //updating existing customer infos
-        stripe_auth.customers.update(req.profile.stripe_customer, {
+        userStripe.customers.update(req.profile.stripe_customer, {
             source: req.body.token
         }, (err, customer) => {
             if (err) {
@@ -179,7 +179,7 @@ const customer_Object = (req, res, next) => {
         })
     } else {
         //if not customer object exist
-        stripe_auth.customers.create({
+        userStripe.customers.create({
             email: req.profile.email,
             source: req.body.token
         }).then((customer) => {
@@ -192,6 +192,7 @@ const customer_Object = (req, res, next) => {
                             error: errorHandler.getErrorMessage(err)
                         })
                     }
+                    //adding the customer id to the order beeing palced
                     req.body.order.payment_id = customer.id
                     next()
                 })
@@ -199,6 +200,33 @@ const customer_Object = (req, res, next) => {
     }
 }
 
+
+//------------ To charge a credit or a debit card, let's create a Charge object.
+//this can retrieve and refund individual charges as well as list all charges, etc...-------
+const charge_Object = (req, res, next) => {
+    if (!req.profile.strip_seller) {
+        //if seller not connected, return a 400 error
+        return res.status('400').json({
+            error: "Please connect your Stripe account"
+        })
+    }
+    //generate a stripe token
+    stripe_auth.tokens.create({
+        customer: req.order.payment_id,
+        }, {
+            stripeACCOUNT: req.profile.strip_seller.stripe_user_id,
+        }).then((token) => {
+            userStripe.charges.create({
+                amount: req.body.amount * 100, //convert the amount in cents
+                currency: 'usd',
+                source: token.id,
+            }, {
+                stripeACCOUNT: req.profile.strip_seller.stripe_user_id,
+            }).then((charge) => {
+                next()
+            })
+        })
+}
 
 
 
@@ -212,4 +240,6 @@ export default {
     update,
     isSeller,
     stripe_auth,
+    customer_Object,
+    charge_Object,
 }
