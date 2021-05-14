@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from "react";
 import Grid from '@material-ui/core/Grid';
 import {makeStyles} from '@material-ui/core/styles';
+import {StripeProvider} from 'react-stripe-elements';
 import config from '../../../config/config';
 
 import CartItems from './CartItems';
+import Checkout from './Checkout';
 
 
 
@@ -41,6 +43,9 @@ export default function Cart () {
                 {checkout && 
                     <Grid item xs={6} sm={6}>
                         {/**implementing Stripe payment here */}
+                        <StripeProvider apiKey={config.stripe_pub_secret_key}>
+                            <Checkout />
+                        </StripeProvider>
                     </Grid>
                 }
             </Grid>

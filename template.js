@@ -28,6 +28,7 @@ export default ({html, css}) => {
      </head>
      <body>
       <div id="root">${html}</div>
+      <script id="stripe-js" src="https://js.stripe.com/v3/" async></script>
       <script src="dist/bundle.js"></script>
      </body>
     </html>`
