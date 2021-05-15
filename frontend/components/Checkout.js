@@ -132,7 +132,7 @@ export default function Checkout() {
                 name="street"
                 variant="outlined"
                 value={values.checkoutDetails.delivery_address.street}
-                onChange={handleInputChange('street')}
+                onChange={handleAddressChange('street')}
                 required
                 fullWidth
                 InputLabelProps={{ shrink: true }}
@@ -145,7 +145,7 @@ export default function Checkout() {
                 name="city"
                 variant="outlined"
                 value={values.checkoutDetails.delivery_address.city}
-                onChange={handleInputChange('city')}
+                onChange={handleAddressChange('city')}
                 required
                 fullWidth
                 InputLabelProps={{ shrink: true }}
@@ -158,7 +158,7 @@ export default function Checkout() {
                 name="state"
                 variant="outlined"
                 value={values.checkoutDetails.delivery_address.state}
-                onChange={handleInputChange('state')}
+                onChange={handleAddressChange('state')}
                 required
                 fullWidth
                 InputLabelProps={{ shrink: true }}
@@ -171,7 +171,7 @@ export default function Checkout() {
                 name="street"
                 variant="outlined"
                 value={values.checkoutDetails.delivery_address.zipcode}
-                onChange={handleInputChange('zipcode')}
+                onChange={handleAddressChange('zipcode')}
                 required
                 fullWidth
                 InputLabelProps={{ shrink: true }}
@@ -184,7 +184,7 @@ export default function Checkout() {
                 name="country"
                 variant="outlined"
                 value={values.checkoutDetails.delivery_address.country}
-                onChange={handleInputChange('country')}
+                onChange={handleAddressChange('country')}
                 required
                 fullWidth
                 InputLabelProps={{ shrink: true }}

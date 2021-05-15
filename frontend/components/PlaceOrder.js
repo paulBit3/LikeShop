@@ -10,6 +10,7 @@ import {Redirect} from 'react-router-dom';
 
 import auth from './../client/helpers/auth-helpers';
 import cart from './../client/helpers/cart-helpers';
+import {create} from './../client/order/api-order';
 
 /** this component contain credit card details and button for user to place order
  * we will use the injectStripe higher-order component(HOC) from stripe to wrap this component**/
@@ -61,8 +62,23 @@ const PlaceOrder = (props) => {
                 setValues({...values, error: payload.error.message})
             } else {
                 const jwt = auth.isAuthenticated()
+                create({userId: jwt.user._id}, {
+                    t: jwt.token
+                }, props.checkoutDetails, payload.token.id).then((data) => {
+                    if (data.error) {
+                        setValues({...values, error: data.error})
+                    } else {
+                        cart.emptyCart(() => {
+                            setValues({...values, 'orderId': data._id, 'redirect': true})
+                        })
+                    }
+                })
             }
         })
+    }
+
+    if (values.redirect) {
+        return (<Redirect  to={'/order/' + values.orderId}/>)
     }
 
 
