@@ -5,8 +5,8 @@ import Card from '@material-ui/core/Card';
 import Icon from '@material-ui/core/Icon';
 import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
-import {Link} from 'react-router-dom';
-import {Elements} from 'react-stripe-elements';
+import {Elements} from '@stripe/react-stripe-js';
+//import {Elements} from 'react-stripe-elements';
 
 import auth from './../client/helpers/auth-helpers';
 import cart from './../client/helpers/cart-helpers';
