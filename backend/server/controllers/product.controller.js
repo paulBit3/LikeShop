@@ -120,6 +120,30 @@ const list = async (req, res) => {
 }
 
 
+// -----------decrease products stock quantity
+/* this method will decrease the stock qty when an order is placed. This will automatically reflect
+the updated QTY of the products in the shops after on order is placed*/
+const decreaseQty = async (req, res, next) => {
+    let bulkOps = req.body.order.products.map((item) => {
+        return {
+            "updateOne": {
+                "filter": { "_id": item.product._id},
+                "update": { "$inc": {"quantity": -item.quantity}}
+            }
+        }
+    })
+    try {
+        await Product.bulkWrite(bulkOps, {})
+        next()
+    } catch (err) {
+        return res.status(400).json({
+            error: "An error occurred. update rejected"
+        })
+    }
+}
+
+
+
 // -----------retrieve products from the Database
 /* this method will return all products by id*/
 const productByID = async (req, res, next, id) => {

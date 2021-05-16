@@ -84,8 +84,9 @@ const PlaceOrder = (props) => {
 
     return (<span>
         <Typography type="subheading" component="h3" className={classes.subheading}>
-            Card infos
+            Card Details
         </Typography>
+        {/* using the Stripe CardElement */}
         <CardElement
             options={{
                 style: {
@@ -119,5 +120,6 @@ PlaceOrder.propTypes = {
     checkoutDetails: PropTypes.object.isRequired
 }
 
+//wrapping it with the injectStripe higher-order component(HOC)
 export default injectStripe(PlaceOrder)
 

@@ -9,7 +9,8 @@ import errorHandler from './../helper/dbErrorHandler';
 
 // ----------- Creating method for a order
 
-/* this function is invoked to create a new order */
+/* this function invoked, takes the order details,
+ create a new order, and save it to the Order table */
 const create = (req, res) => {
     try {
         req.body.order.user = req.profile
