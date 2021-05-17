@@ -27,7 +27,7 @@ const create = (req, res) => {
 
 
 
-// ----------- Listing all orders by shop
+// ----------- Listing all orders that have product purchased with the matching shop ID
 
 const listByShop = async (req, res) => {
     try {
@@ -43,7 +43,7 @@ const listByShop = async (req, res) => {
     }
 }
 
-// ----------- Retrieve the oder from the database
+// ----------- Retrieve the order from the database
 /* this method will return all orders by ID*/
 const orderByID = async (req, res, next, id) => {
     try {

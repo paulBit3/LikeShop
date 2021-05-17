@@ -18,6 +18,8 @@ import NewProduct from './NewProduct';
 import EditProduct from './EditProduct';
 import Product from './Product';
 import CartView from './CartView';
+import StripeAccountConnect from './StripeAccountConnect';
+import ShopOrders from './ShopOrders';
 import PrivateRoute from './PrivateRoute';
 import Header from './Header';
 
@@ -64,6 +66,9 @@ const CoreRouter = () => {
 
                 {/* to redirect the user to a specific shop with shop details */}
                 <Route path="/shops/:shopId" component={Shop} />
+                 
+                {/* to display the list of the orders for a given shop, and render order details */}
+                <PrivateRoute path="/seller/orders/:shop/:shopId" component={ShopOrders}/>
 
                 {/* to add a new shop view displaying all shops */}
                 <PrivateRoute path="/seller/shop/new" component={NewShop} />
@@ -81,7 +86,7 @@ const CoreRouter = () => {
                 <PrivateRoute path="/seller/:shopId/productId/edit" component={EditProduct} />
 
                 {/* owner shops or seller stripe connect url. seller will be redirect to this url*/}
-                <Route path="/seller/stripe/connect" component={} />
+                <Route path="/seller/stripe/connect" component={StripeAccountConnect} />
             </Switch>
         </div>
     )
