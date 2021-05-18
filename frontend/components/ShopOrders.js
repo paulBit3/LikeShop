@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from "react";
-import Paper from '@material-ui/core/Paper';
-import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import Typography from '@material-ui/core/Typography';
-import Icon from '@material-ui/core/Icon';
+import {makeStyles} from '@material-ui/core/styles';
+import Grid from '@material-ui/core/Grid';
 import GridList from '@material-ui/core/GridList';
 import ExpandLess from '@material-ui/icons/ExpandLess';
 import ExpandMore from '@material-ui/icons/ExpandMore';
@@ -13,6 +12,7 @@ import Divider from '@material-ui/core/Divider';
 
 import auth from './../client/helpers/auth-helpers';
 import {listByShop} from './../client/order/api-order';
+import ItemOrderEdit from './ItemOrderEdit';
 
 /** this component display the list of 
  * orders that have been received for a given shop**/
@@ -113,6 +113,12 @@ export default function ShopOrders({match}) {
                         </ListItem><Divider/>
                         <Collapse component="li" in={open == i} timeout="auto" unmountOnExit>
                             {/* product order goes here*/}
+                            <ItemOrderEdit 
+                                shopId={match.params.shopId}
+                                order={order}
+                                orderIndex={i}
+                                updateOrders={updateOrders}
+                            />
                             <div className={classes.customerDetails}>
                                 <Typography type="subheading" component="h3" className={classes.subheading}>
                                     Deliver to:
