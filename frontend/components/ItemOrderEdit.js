@@ -3,9 +3,6 @@ import PropTypes from 'prop-types';
 import {makeStyles} from '@material-ui/core/styles';
 import { MenuItem, Grid, TextField, List, ListItem, ListItemText, Typography, Divider } from "@material-ui/core";
 
-import ExpandLess from '@material-ui/icons/ExpandLess';
-import ExpandMore from '@material-ui/icons/ExpandMore';
-
 import auth from './../client/helpers/auth-helpers';
 import {getStatusValues, update, cancelProduct, processCharge} from './../client/order/api-order';
 import ItemOrderEdit from './ItemOrderEdit';

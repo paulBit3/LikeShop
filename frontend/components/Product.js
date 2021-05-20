@@ -4,11 +4,16 @@ import { makeStyles } from "@material-ui/core/styles";
 import Container from '@material-ui/core/Container';
 import Grid from "@material-ui/core/Grid";
 import CardMedia from '@material-ui/core/CardMedia'
+import CardHeader from '.@material-ui/core/CardHeader';
 import Box from '@material-ui/core/Box';
 import Avatar from '@material-ui/core/Avatar';
+import Tooltip from '@material-ui/core/Tooltip';
+
 import {Link} from "react-router-dom";
+
 import { read, listRelated } from "./../client/api-fetching/product/api-product";
 import Suggestions from './Suggestions';
+import AddToCart from './AddToCart';
 
 
 const useStyles = makeStyles(theme => ({
@@ -157,16 +162,16 @@ export default function Product({match}) {
             <Container component="main" maxWidth="xs" id="product">
                 <Grid item xs={12}>
                     <Link to={'/shops/'+product.shop._id} className={classes.link}>
-                        <Avatar src={logoUrl} className={classes.bigAvatar}/> {product.shop.name}
+                        <Avatar src={logoUrl} className={classes.bigAvatar}/> Visit the {product.shop.name} Shop
                     </Link>
                 </Grid> <br/>
                 <Grid container spacing={10}>
                     <Grid item xs={12} sm={6}>
-                        <Typography type="headline" variant="h3" component="h3" color="primary" className={classes.productTitle}>
+                        <Typography type="headline" variant="h5" component="h5" color="primary" className={classes.productTitle}>
                             {product.name}
                         </Typography> <br/>
-                        <span>{product.quantity> 0? 'In Stock':'Out of Stock'} </span>
-                        {/* implementing Add to Cart here */}
+                        
+                      
                         <div className={classes.flex}>
                             <Grid item xs={6} sm={3}>
                                 <CardMedia 
@@ -174,10 +179,22 @@ export default function Product({match}) {
                                   image={imageUrl}
                                   title={product.name}
                                 />
+                                <span>{product.quantity> 0 ? 'In Stock':'Out of Stock'} </span>
                                 <Typography component="p" variant="subtitle1" color="primary" className={classes.subheading}>
+                                    <span><h5>Details</h5></span>
                                     {product.description} <br/>
-                                    <span className={classes.price}>$ {product.price}</span>
-                                </Typography>
+                                    <span className={classes.price}>Price: $ {product.price}</span> 
+                                </Typography><br/>
+                            </Grid>
+                              {/* implementing Add to Cart here */}
+                            <Grid item xs={6} sm={3}>
+                                <CardHeader action={
+                                    <Tooltip title="Add to cart" arrow>
+                                        <AddToCart item={product}/>
+                                    </Tooltip>
+                                 }
+                                />
+                                
                             </Grid>
                         </div>
                     </Grid>

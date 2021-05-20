@@ -89,7 +89,7 @@ const read = (req, res) => {
 }
 
 
-// ----------- Update the order from the database
+// ----------- Update the order status from the database
 
 const update = (req, res) => {
     try {

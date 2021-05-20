@@ -85,7 +85,8 @@ export default function Products(props) {
                                         <img 
                                         className={classes.image} 
                                         src={'/api/product/image'+product._id} 
-                                        alt={product.name} />
+                                        alt={product.name} 
+                                    />
                                     </Link>
                                     <GridListTileBar
                                         className={classes.tileBar}

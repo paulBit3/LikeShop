@@ -25,12 +25,12 @@ router.route('/api/orders/user/:userId')
    .get(authCtrl.requireSignin, orderCtrl.listByUser)
 
 
-//get order status
+//get order status values
 router.route('/api/order/status_values')
   .get(orderCtrl.getStatusValues)
 
 
-//endpoint to update existing order
+//cancel product order API endpoint
 router.route('/api/order/:shopId/cancel/:productId')
   .put(authCtrl.requireSignin, shopCtrl.isOwner, productCtrl.increaseQuantity, orderCtrl.update)
 
@@ -40,7 +40,7 @@ router.route('/api/order/:orderId/charge/:userId/:shopId')
   .put(authCtrl.requireSignin, shopCtrl.isOwner, userCtrl.createCharge, orderCtrl.update)
 
 
-//endpoint to get order status updated
+//endpoint update order status 
 router.route('/api/order/status/:shopId')
   .put(authCtrl.requireSignin, shopCtrl.isOwner, orderCtrl.update)
 

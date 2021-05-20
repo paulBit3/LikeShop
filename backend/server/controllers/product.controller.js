@@ -144,6 +144,23 @@ const decreaseQty = async (req, res, next) => {
 
 
 
+// -----------Increase products stock quantity
+/* this method finds the product by the matching ID in the database and increase the QTY.*/
+const increaseQty = async (req, res, next) => {
+    try {
+        await Product.findByIdAndUpdate(req.product._id, 
+            {$inc: {"Qty": req.body.quantity}}, {new: true})
+        exec()
+         next()
+    } catch (err) {
+        return res.status(400).json({
+            error: "An error occurred. update rejected"
+        })
+    }
+}
+
+
+
 // -----------retrieve products from the Database
 /* this method will return all products by id*/
 const productByID = async (req, res, next, id) => {
@@ -168,6 +185,19 @@ const productByID = async (req, res, next, id) => {
 const read = (req, res) => {
     req.product.photo = undefined
     return res.json(req.product)
+}
+
+//handling product image
+const photo = (req, res, next) => {
+    if(req.product.image.data){
+      res.set("Content-Type", req.product.image.contentType)
+      return res.send(req.product.image.data)
+    }
+    next()
+}
+
+const defaultPhoto = (req, res) => {
+    return res.sendFile(process.cwd()+defaultImage)
 }
 
 
@@ -231,5 +261,9 @@ export default {
     listCategories,
     list,
     productByID,
+    decreaseQty,
+    increaseQty,
+    photo,
+    defaultPhoto
 
 }
