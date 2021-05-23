@@ -4,7 +4,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import Container from '@material-ui/core/Container';
 import Grid from "@material-ui/core/Grid";
 import CardMedia from '@material-ui/core/CardMedia'
-import CardHeader from '.@material-ui/core/CardHeader';
+import CardHeader from '@material-ui/core/CardHeader';
 import Box from '@material-ui/core/Box';
 import Avatar from '@material-ui/core/Avatar';
 import Tooltip from '@material-ui/core/Tooltip';

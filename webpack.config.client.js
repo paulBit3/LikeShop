@@ -14,12 +14,13 @@ const config = {
     mode: "development",
     devtool: 'eval-source-map',
     entry: [
+        'react-hot-loader/patch',
         'webpack-hot-middleware/client?reload=true',
         path.join(CURRENT_WORKING_DIR , 'frontend/client/index.js')
     ],
     output: {
-        filename: 'bundle.js',
         path: path.join(CURRENT_WORKING_DIR , '/dist'),
+        filename: 'bundle.js',
         publicPath: '/dist/' // Webpack dev middleware, if enabled, handles requests for this URL prefix
     },
     module: {
@@ -40,12 +41,33 @@ const config = {
     plugins: [
         new webpack.HotModuleReplacementPlugin(),
         new webpack.NoEmitOnErrorsPlugin(),
+        //new webpack.EnvironmentPlugin(['process.env.NODE_ENV']),
+        new webpack.DefinePlugin({
+            'process.env': {
+                NODE_ENV: JSON.stringify(process.env.NODE_ENV || "development")
+            },
+        }),
+       /*  new webpack.DefinePlugin({
+            'process.env.NODE_ENV': JSON.stringify('development')
+        }), */
     ],
     resolve:  {
         alias: {
             'react-dom': '@hot-loader/react-dom'
         }
     },
+    resolve: {
+        fallback: {
+          fs: false,
+          os: false,
+          path: false,
+          net: false,
+          stream: false,
+          tls: false,
+          crypto: false,
+        }
+    },
+
     devServer: {
         contentBase: path.join(__dirname, 'public'),
         watchContentBase: true,
@@ -58,7 +80,9 @@ const config = {
     performance: {
         maxEntrypointSize: 512000,
         maxAssetSize: 512000
-    }
+    },
+    //or
+    //performance: { hints: false }
 }
 
 module.exports = config

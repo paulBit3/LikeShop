@@ -3,9 +3,8 @@ import PropTypes from 'prop-types';
 import {makeStyles} from '@material-ui/core/styles';
 import { MenuItem, Grid, TextField, List, ListItem, ListItemText, Typography, Divider } from "@material-ui/core";
 
-import auth from './../client/helpers/auth-helpers';
-import {getStatusValues, update, cancelProduct, processCharge} from './../client/order/api-order';
-import ItemOrderEdit from './ItemOrderEdit';
+import auth from '../client/helpers/auth-helpers';
+import {getStatusValues, update, cancelProduct, processCharge} from '../client/order/api-order';
 
 /** this component takes an order object as a prop, iterate through order's products array
  * to display only the items that has been purchased from the current shop**/
@@ -42,7 +41,9 @@ import ItemOrderEdit from './ItemOrderEdit';
     }
 }))
 
-export default function ItemOrderEdit(props){
+//we define and export a function component 
+
+export default function OrderEdit(props){
     const classes = useStyles()
     const [values, setValues] = useState({
         open: 0,
@@ -197,7 +198,7 @@ export default function ItemOrderEdit(props){
     </>
 }
 
-ItemOrderEdit.propTypes = {
+OrderEdit.propTypes = {
     shopId: PropTypes.string.isRequired,
     order: PropTypes.object.isRequired,
     orderIndex: PropTypes.number.isRequired,

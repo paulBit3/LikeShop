@@ -8,7 +8,7 @@ import extend from 'lodash/extend';
 
 import errorHandler from './../helper/dbErrorHandler';
 import request from 'request';
-import config from './../../config/config';
+import config from '../../../config/config';
 import stripe from 'stripe';
 
 

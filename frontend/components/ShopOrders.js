@@ -12,7 +12,7 @@ import Divider from '@material-ui/core/Divider';
 
 import auth from './../client/helpers/auth-helpers';
 import {listByShop} from './../client/order/api-order';
-import ItemOrderEdit from './ItemOrderEdit';
+import OrderEdit from './OrderEdit';
 
 /** this component display the list of 
  * orders that have been received for a given shop**/
@@ -113,7 +113,7 @@ export default function ShopOrders({match}) {
                         </ListItem><Divider/>
                         <Collapse component="li" in={open == i} timeout="auto" unmountOnExit>
                             {/* product order goes here*/}
-                            <ItemOrderEdit 
+                            <OrderEdit 
                                 shopId={match.params.shopId}
                                 order={order}
                                 orderIndex={i}

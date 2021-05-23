@@ -1,11 +1,13 @@
 import React, { useState } from "react";
+import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Icon from '@material-ui/core/Icon';
 
 /* Element components provide a flexible way to securely collect payment information */
 //import {CardCvcElement, CardNumberElement, CardExpiryElement } from '@stripe/react-stripe-js';
-import {CardElement, injectStripe} from '@stripe/react-stripe-js';
+import {CardElement} from '@stripe/react-stripe-js';
+import {injectStripe} from 'react-stripe-elements';
 
 import {Redirect} from 'react-router-dom';
 

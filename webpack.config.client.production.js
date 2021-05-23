@@ -2,6 +2,7 @@
 
 //requiring  objects
 const path = require('path');
+
 const webpack = require('webpack');
 
 
@@ -38,8 +39,24 @@ const config = {
     plugins: [
         new webpack.HotModuleReplacementPlugin(),
         new webpack.NoEmitOnErrorsPlugin(),
- 
+        new webpack.DefinePlugin({
+            'process.env': {
+                NODE_ENV: JSON.stringify(process.env.NODE_ENV || "development")
+            },
+        }),
     ],
+
+    resolve: {
+        fallback: {
+          fs: false,
+          os: false,
+          path: false,
+          net: false,
+          stream: false,
+          tls: false,
+          crypto: false,
+        }
+    },
 
     devServer: {
         contentBase: path.join(__dirname, 'public'),
@@ -50,10 +67,13 @@ const config = {
         inline: true,
         port: 3000,
     },
-    performance: {
-        maxEntrypointSize: 512000,
-        maxAssetSize: 512000
-    }
+
+    // performance: {
+    //     maxEntrypointSize: 512000,
+    //     maxAssetSize: 512000
+    // },
+    //or
+    performance: { hints: false }
 }
 
 module.exports = config

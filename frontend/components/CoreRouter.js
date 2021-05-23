@@ -21,6 +21,7 @@ import CartView from './CartView';
 import StripeAccountConnect from './StripeAccountConnect';
 import ShopOrders from './ShopOrders';
 import PrivateRoute from './PrivateRoute';
+import Order from './Order';
 import Header from './Header';
 
 
@@ -67,6 +68,9 @@ const CoreRouter = () => {
                 {/* to redirect the user to a specific shop with shop details */}
                 <Route path="/shops/:shopId" component={Shop} />
                  
+                {/* to direct the user to the order details */}
+                <Route path="/order/:orderId" component={Order} />
+
                 {/* to display the list of the orders for a given shop, and render order details */}
                 <PrivateRoute path="/seller/orders/:shop/:shopId" component={ShopOrders}/>
 

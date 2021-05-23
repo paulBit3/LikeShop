@@ -21,7 +21,7 @@ import stripeButton from './../client/assets/images/stripe_button.png';
 import DeleteUser from './DeleteUser';
 import auth from './../client/helpers/auth-helpers';
 import {read} from './../client/api-fetching/api-user.js';
-import config from '../../../config/config';
+import config from './../../config/config';
 
 
 /* Style declaration to define css styles(CSS-in-JS) for the component.
